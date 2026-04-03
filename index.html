@@ -323,13 +323,8 @@
           </div>
         </button>
       </div>
-      <!-- Floating Action Button -->
-      <button aria-label="Mi ubicación"
-        class="absolute bottom-[88px] right-4 md:bottom-4 w-11 h-11 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-lg">
-        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">my_location</span>
-      </button>
-      <!-- Map Controls (Minimalist) -->
-      <div class="absolute top-4 right-4 flex flex-col gap-2">
+      <!-- Map Controls + FAB agrupados (top-right) -->
+      <div class="absolute top-4 right-4 flex flex-col gap-2 z-20">
         <div class="bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md p-1 rounded-lg flex flex-col items-center">
           <button aria-label="Ampliar mapa"
             class="w-11 h-11 flex items-center justify-center hover:bg-surface-container rounded-md transition-colors"><span
@@ -342,6 +337,45 @@
         <button aria-label="Ver capas del mapa"
           class="w-11 h-11 flex items-center justify-center bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md rounded-lg text-on-surface dark:text-inverse-on-surface hover:bg-white dark:hover:bg-inverse-surface transition-colors">
           <span aria-hidden="true" class="material-symbols-outlined text-[20px]">layers</span>
+        </button>
+        <button aria-label="Mi ubicación"
+          class="mt-2 w-11 h-11 bg-primary text-on-primary rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-lg">
+          <span aria-hidden="true" class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">my_location</span>
+        </button>
+      </div>
+      <!-- Floating Detail Card -->
+      <div
+        class="absolute bottom-[84px] left-3 right-3 md:bottom-8 md:right-8 md:left-auto md:w-[280px] z-30 bg-white/90 dark:bg-inverse-surface/90 dark:text-inverse-on-surface backdrop-blur-xl rounded-2xl p-4 flex flex-col gap-3">
+        <div class="flex items-start justify-between">
+          <h2 class="font-headline font-bold text-base leading-tight text-on-surface">Av. Ana de Viya, 12</h2>
+          <div class="flex items-center gap-1 flex-shrink-0 ml-2">
+            <button aria-label="Guardar en favoritos"
+              class="text-tertiary hover:scale-110 transition-transform btn-favorite w-8 h-8 flex items-center justify-center rounded-full">
+              <span aria-hidden="true" class="material-symbols-outlined text-[18px]">favorite_border</span>
+            </button>
+            <button aria-label="Cerrar tarjeta"
+              class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container/50 transition-colors text-outline">
+              <span aria-hidden="true" class="material-symbols-outlined text-[18px]">close</span>
+            </button>
+          </div>
+        </div>
+        <!-- Chips Row -->
+        <div class="flex flex-wrap gap-1.5">
+          <div
+            class="px-2.5 py-1 bg-primary-container/20 text-on-primary-container rounded-full text-[10px] font-bold uppercase tracking-wider">
+            Vidrio</div>
+          <div
+            class="px-2.5 py-1 bg-surface-container-highest text-on-surface-variant rounded-full text-[10px] font-bold uppercase tracking-wider">
+            L-V 08-20h</div>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span aria-hidden="true" class="material-symbols-outlined text-[16px] text-outline">near_me</span>
+          <span class="font-ui text-[12px] text-outline">A 250 metros de tu ubicación</span>
+        </div>
+        <button
+          class="w-full h-[36px] bg-primary-container hover:opacity-90 active:scale-[0.98] transition-all text-on-primary-container font-ui font-medium text-[13px] rounded-xl flex items-center justify-center gap-2 mt-1">
+          <span aria-hidden="true" class="material-symbols-outlined text-base">directions</span>
+          Cómo llegar
         </button>
       </div>
     </main>
