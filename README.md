@@ -7,6 +7,10 @@
 [![Material Symbols](https://img.shields.io/badge/Material_Symbols-Outlined-4285F4?style=flat-square&logo=google&logoColor=white)](https://fonts.google.com/icons)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE.md)
 
+## Preview
+
+![Interfaz de usuario — ReciclaCAD](assets/imgs/ui.png)
+
 ReciclaCAD helps citizens of Cádiz find the nearest recycling point. This repository contains the full visual design as static HTML, built with Tailwind CSS v4, following the "The Urban Cartographer" design system — a blend of architectural precision and the airy character of Andalusia's coastline.
 
 ## Screens
