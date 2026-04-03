@@ -1,241 +1,280 @@
 <!DOCTYPE html>
 
-<html class="light" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ReciclaCAD - Cádiz Sostenible</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "primary-fixed-dim": "#4ae08f",
-                      "on-secondary-fixed": "#001c39",
-                      "error-container": "#ffdad6",
-                      "on-secondary-fixed-variant": "#004884",
-                      "surface-tint": "#006d3e",
-                      "surface-variant": "#e1e3e4",
-                      "on-primary": "#ffffff",
-                      "on-error-container": "#93000a",
-                      "secondary-fixed": "#d4e3ff",
-                      "on-primary-fixed": "#00210f",
-                      "surface-container-highest": "#e1e3e4",
-                      "on-surface-variant": "#3c4a3f",
-                      "secondary-container": "#499dfe",
-                      "error": "#ba1a1a",
-                      "surface-dim": "#d9dadb",
-                      "surface-container-low": "#f3f4f5",
-                      "outline-variant": "#bbcabc",
-                      "surface-container-lowest": "#ffffff",
-                      "tertiary-fixed": "#ffddb4",
-                      "on-secondary": "#ffffff",
-                      "on-tertiary-fixed": "#291800",
-                      "tertiary-container": "#f2a320",
-                      "inverse-primary": "#4ae08f",
-                      "tertiary-fixed-dim": "#ffb955",
-                      "secondary": "#005fad",
-                      "inverse-on-surface": "#f0f1f2",
-                      "on-error": "#ffffff",
-                      "on-tertiary": "#ffffff",
-                      "surface-container-high": "#e7e8e9",
-                      "primary-container": "#2ecc7d",
-                      "primary-fixed": "#6bfda9",
-                      "inverse-surface": "#2e3132",
-                      "on-secondary-container": "#003462",
-                      "surface-bright": "#f8f9fa",
-                      "tertiary": "#835500",
-                      "on-background": "#191c1d",
-                      "on-tertiary-container": "#613e00",
-                      "surface": "#f8f9fa",
-                      "on-surface": "#191c1d",
-                      "on-primary-container": "#00512c",
-                      "primary": "#006d3e",
-                      "on-primary-fixed-variant": "#00522d",
-                      "outline": "#6c7b6f",
-                      "on-tertiary-fixed-variant": "#633f00",
-                      "surface-container": "#edeeef",
-                      "background": "#f8f9fa",
-                      "secondary-fixed-dim": "#a4c9ff"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.125rem",
-                      "lg": "0.25rem",
-                      "xl": "0.5rem",
-                      "full": "0.75rem"
-              },
-              "fontFamily": {
-                      "headline": ["Plus Jakarta Sans"],
-                      "body": ["Be Vietnam Pro"],
-                      "label": ["Be Vietnam Pro"]
-              }
-            },
+<html class="light" lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>ReciclaCAD - Cádiz Sostenible</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;family=DM+Sans:wght@400;500;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-fixed-dim": "#4ae08f",
+            "on-secondary-fixed": "#001c39",
+            "error-container": "#ffdad6",
+            "on-secondary-fixed-variant": "#004884",
+            "surface-tint": "#006d3e",
+            "surface-variant": "#e1e3e4",
+            "on-primary": "#ffffff",
+            "on-error-container": "#93000a",
+            "secondary-fixed": "#d4e3ff",
+            "on-primary-fixed": "#00210f",
+            "surface-container-highest": "#e1e3e4",
+            "on-surface-variant": "#3c4a3f",
+            "secondary-container": "#499dfe",
+            "error": "#ba1a1a",
+            "surface-dim": "#d9dadb",
+            "surface-container-low": "#f3f4f5",
+            "outline-variant": "#bbcabc",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#ffddb4",
+            "on-secondary": "#ffffff",
+            "on-tertiary-fixed": "#291800",
+            "tertiary-container": "#f2a320",
+            "inverse-primary": "#4ae08f",
+            "tertiary-fixed-dim": "#ffb955",
+            "secondary": "#005fad",
+            "inverse-on-surface": "#f0f1f2",
+            "on-error": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "surface-container-high": "#e7e8e9",
+            "primary-container": "#2ecc7d",
+            "primary-fixed": "#6bfda9",
+            "inverse-surface": "#2e3132",
+            "on-secondary-container": "#003462",
+            "surface-bright": "#f8f9fa",
+            "tertiary": "#835500",
+            "on-background": "#191c1d",
+            "on-tertiary-container": "#613e00",
+            "surface": "#f8f9fa",
+            "on-surface": "#191c1d",
+            "on-primary-container": "#00512c",
+            "primary": "#006d3e",
+            "on-primary-fixed-variant": "#00522d",
+            "outline": "#6c7b6f",
+            "on-tertiary-fixed-variant": "#633f00",
+            "surface-container": "#edeeef",
+            "background": "#f8f9fa",
+            "secondary-fixed-dim": "#a4c9ff"
           },
-        }
-      </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .ghost-border {
-            border: 1px solid rgba(187, 202, 188, 0.15);
-        }
-        body {
-            font-family: 'Be Vietnam Pro', sans-serif;
-            background-color: #f8f9fa;
-        }
-    </style>
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "fontFamily": {
+            "headline": ["Plus Jakarta Sans"],
+            "body": ["Be Vietnam Pro"],
+            "label": ["Be Vietnam Pro"]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .ghost-border {
+      border: 1px solid rgba(187, 202, 188, 0.15);
+    }
+
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background-color: #f8f9fa;
+    }
+  </style>
 </head>
+
 <body class="overflow-hidden">
-<!-- TopNavBar -->
-<header class="fixed top-0 left-0 w-full h-[56px] z-50 bg-[#2D2D2D] flex items-center px-4 w-full h-[56px]">
-<div class="flex items-center gap-2 text-base font-bold text-white before:content-[''] before:w-2 before:h-2 before:bg-[#2ECC7D] before:rounded-full font-['Plus_Jakarta_Sans'] tracking-tight">
-            ReciclaCAD
+  <!-- TopNavBar -->
+  <header class="fixed top-0 left-0 w-full h-[56px] z-50 bg-[#2D2D2D] flex items-center px-4 w-full h-[56px]">
+    <div
+      class="flex items-center gap-2 text-base font-bold text-white before:content-[''] before:w-2 before:h-2 before:bg-[#2ECC7D] before:rounded-full font-['Plus_Jakarta_Sans'] tracking-tight">
+      ReciclaCAD
+    </div>
+    <div class="ml-auto flex items-center gap-4">
+      <button class="material-symbols-outlined text-white hover:opacity-80 transition-opacity">account_circle</button>
+    </div>
+  </header>
+  <div class="flex h-screen pt-[56px]">
+    <!-- SideNavBar -->
+    <aside
+      class="fixed left-0 top-[56px] w-[280px] h-[calc(100vh-56px)] z-40 bg-white dark:bg-slate-900 flex flex-col p-6 gap-6 font-['DM_Sans'] text-sm leading-relaxed ghost-border">
+      <div>
+        <h1 class="text-xl font-bold font-headline text-on-background mb-1">Encuentra tu punto</h1>
+        <p class="text-on-surface-variant opacity-70">Cádiz Sostenible</p>
+      </div>
+      <!-- Search Bar -->
+      <div class="relative">
+        <span
+          class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">search</span>
+        <input
+          class="w-full bg-surface-container-low border-none rounded-xl pl-10 py-2 text-sm focus:ring-2 focus:ring-primary/20 outline-none"
+          placeholder="Buscar municipio o dirección..." type="text" />
+      </div>
+      <!-- Filter Chips (Thematic) -->
+      <div class="flex flex-wrap gap-2">
+        <!-- Vidrio (Primary) -->
+        <button
+          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-[#e8f8f0] text-[#1a7a4a] border border-[#2ECC7D] font-medium transition-transform active:scale-[0.98]">
+          <span class="material-symbols-outlined text-[16px]">recycling</span>
+          Vidrio
+        </button>
+        <!-- Papel (Secondary) -->
+        <button
+          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-[#e8f0ff] text-[#1a4a9e] border border-[#499dfe] font-medium transition-transform active:scale-[0.98]">
+          <span class="material-symbols-outlined text-[16px]">description</span>
+          Papel
+        </button>
+        <!-- Envases (Tertiary) -->
+        <button
+          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-[#fff8e8] text-[#9e6a1a] border border-[#f2a320] font-medium transition-transform active:scale-[0.98]">
+          <span class="material-symbols-outlined text-[16px]">inventory_2</span>
+          Envases
+        </button>
+        <!-- Pilas (Inactive) -->
+        <button
+          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-gray-100 text-gray-500 font-medium transition-transform active:scale-[0.98]">
+          <span class="material-symbols-outlined text-[16px]">battery_charging_full</span>
+          Pilas
+        </button>
+        <!-- Ropa (Inactive) -->
+        <button
+          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-gray-100 text-gray-500 font-medium transition-transform active:scale-[0.98]">
+          <span class="material-symbols-outlined text-[16px]">checkroom</span>
+          Ropa
+        </button>
+      </div>
+      <div class="mt-4 flex-1 overflow-y-auto">
+        <div class="text-[12px] text-on-surface-variant opacity-60 mb-4 px-2 uppercase tracking-wider font-medium">342
+          puntos encontrados</div>
+        <div class="space-y-1">
+          <!-- Point Item 1 -->
+          <div
+            class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group">
+            <div class="flex items-center gap-3">
+              <div class="w-[10px] h-[10px] rounded-full bg-primary-container"></div>
+              <div>
+                <div class="text-[13px] font-medium text-on-surface">Av. Ana de Viya, 12</div>
+                <div class="text-[11px] text-on-surface-variant opacity-70">A 250m de ti</div>
+              </div>
+            </div>
+            <span
+              class="material-symbols-outlined text-outline-variant opacity-40 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
+          </div>
+          <!-- Point Item 2 -->
+          <div
+            class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group">
+            <div class="flex items-center gap-3">
+              <div class="w-[10px] h-[10px] rounded-full bg-secondary-container"></div>
+              <div>
+                <div class="text-[13px] font-medium text-on-surface">Plaza de las Flores, 3</div>
+                <div class="text-[11px] text-on-surface-variant opacity-70">A 400m de ti</div>
+              </div>
+            </div>
+            <span
+              class="material-symbols-outlined text-outline-variant opacity-40 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
+          </div>
+          <!-- Point Item 3 -->
+          <div
+            class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group">
+            <div class="flex items-center gap-3">
+              <div class="w-[10px] h-[10px] rounded-full bg-tertiary-container"></div>
+              <div>
+                <div class="text-[13px] font-medium text-on-surface">Calle Columela, 18</div>
+                <div class="text-[11px] text-on-surface-variant opacity-70">A 600m de ti</div>
+              </div>
+            </div>
+            <span
+              class="material-symbols-outlined text-outline-variant opacity-40 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
+          </div>
+          <!-- Point Item 4 -->
+          <div
+            class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group">
+            <div class="flex items-center gap-3">
+              <div class="w-[10px] h-[10px] rounded-full bg-primary-container"></div>
+              <div>
+                <div class="text-[13px] font-medium text-on-surface">Paseo Marítimo, 45</div>
+                <div class="text-[11px] text-on-surface-variant opacity-70">A 850m de ti</div>
+              </div>
+            </div>
+            <span
+              class="material-symbols-outlined text-outline-variant opacity-40 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
+          </div>
         </div>
-<div class="ml-auto flex items-center gap-4">
-<button class="material-symbols-outlined text-white hover:opacity-80 transition-opacity">account_circle</button>
-</div>
-</header>
-<div class="flex h-screen pt-[56px]">
-<!-- SideNavBar -->
-<aside class="fixed left-0 top-[56px] w-[280px] h-[calc(100vh-56px)] z-40 bg-white dark:bg-slate-900 flex flex-col p-6 gap-6 font-['DM_Sans'] text-sm leading-relaxed ghost-border">
-<div>
-<h1 class="text-xl font-bold font-headline text-on-background mb-1">Encuentra tu punto</h1>
-<p class="text-on-surface-variant opacity-70">Cádiz Sostenible</p>
-</div>
-<!-- Search Bar -->
-<div class="relative">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">search</span>
-<input class="w-full bg-surface-container-low border-none rounded-xl pl-10 py-2 text-sm focus:ring-2 focus:ring-primary/20 outline-none" placeholder="Buscar municipio o dirección..." type="text"/>
-</div>
-<!-- Filter Chips (Thematic) -->
-<div class="flex flex-wrap gap-2">
-<!-- Vidrio (Primary) -->
-<button class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-[#e8f8f0] text-[#1a7a4a] border border-[#2ECC7D] font-medium transition-transform active:scale-[0.98]">
-<span class="material-symbols-outlined text-[16px]">recycling</span>
-                    Vidrio
-                </button>
-<!-- Papel (Secondary) -->
-<button class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-[#e8f0ff] text-[#1a4a9e] border border-[#499dfe] font-medium transition-transform active:scale-[0.98]">
-<span class="material-symbols-outlined text-[16px]">description</span>
-                    Papel
-                </button>
-<!-- Envases (Tertiary) -->
-<button class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-[#fff8e8] text-[#9e6a1a] border border-[#f2a320] font-medium transition-transform active:scale-[0.98]">
-<span class="material-symbols-outlined text-[16px]">inventory_2</span>
-                    Envases
-                </button>
-<!-- Pilas (Inactive) -->
-<button class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-gray-100 text-gray-500 font-medium transition-transform active:scale-[0.98]">
-<span class="material-symbols-outlined text-[16px]">battery_charging_full</span>
-                    Pilas
-                </button>
-<!-- Ropa (Inactive) -->
-<button class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-gray-100 text-gray-500 font-medium transition-transform active:scale-[0.98]">
-<span class="material-symbols-outlined text-[16px]">checkroom</span>
-                    Ropa
-                </button>
-</div>
-<div class="mt-4 flex-1 overflow-y-auto">
-<div class="text-[12px] text-on-surface-variant opacity-60 mb-4 px-2 uppercase tracking-wider font-medium">342 puntos encontrados</div>
-<div class="space-y-1">
-<!-- Point Item 1 -->
-<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group">
-<div class="flex items-center gap-3">
-<div class="w-[10px] h-[10px] rounded-full bg-primary-container"></div>
-<div>
-<div class="text-[13px] font-medium text-on-surface">Av. Ana de Viya, 12</div>
-<div class="text-[11px] text-on-surface-variant opacity-70">A 250m de ti</div>
-</div>
-</div>
-<span class="material-symbols-outlined text-outline-variant opacity-40 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
-</div>
-<!-- Point Item 2 -->
-<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group">
-<div class="flex items-center gap-3">
-<div class="w-[10px] h-[10px] rounded-full bg-secondary-container"></div>
-<div>
-<div class="text-[13px] font-medium text-on-surface">Plaza de las Flores, 3</div>
-<div class="text-[11px] text-on-surface-variant opacity-70">A 400m de ti</div>
-</div>
-</div>
-<span class="material-symbols-outlined text-outline-variant opacity-40 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
-</div>
-<!-- Point Item 3 -->
-<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group">
-<div class="flex items-center gap-3">
-<div class="w-[10px] h-[10px] rounded-full bg-tertiary-container"></div>
-<div>
-<div class="text-[13px] font-medium text-on-surface">Calle Columela, 18</div>
-<div class="text-[11px] text-on-surface-variant opacity-70">A 600m de ti</div>
-</div>
-</div>
-<span class="material-symbols-outlined text-outline-variant opacity-40 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
-</div>
-<!-- Point Item 4 -->
-<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group">
-<div class="flex items-center gap-3">
-<div class="w-[10px] h-[10px] rounded-full bg-primary-container"></div>
-<div>
-<div class="text-[13px] font-medium text-on-surface">Paseo Marítimo, 45</div>
-<div class="text-[11px] text-on-surface-variant opacity-70">A 850m de ti</div>
-</div>
-</div>
-<span class="material-symbols-outlined text-outline-variant opacity-40 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
-</div>
-</div>
-</div>
-<button class="mt-auto w-full py-3 bg-[#2ECC7D] text-white font-bold rounded-xl transition-transform active:scale-[0.98] hover:opacity-90">
-                Filtrar Mapa
-            </button>
-</aside>
-<!-- Main Map Area -->
-<main class="ml-[280px] flex-1 relative bg-[#dde8dd] overflow-hidden" data-location="Cadiz, Spain">
-<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&amp;fit=crop&amp;q=80&amp;w=2000')] bg-cover bg-center mix-blend-overlay opacity-30" data-alt="Minimalist abstract map of a coastal city with clean architectural lines and soft green tonal overlays"></div>
-<!-- Map Pointers -->
-<!-- Glass Point -->
-<div class="absolute top-[20%] left-[30%] -translate-x-1/2 -translate-y-1/2">
-<div class="w-5 h-5 bg-[#2ECC7D] rounded-full border-2 border-white shadow-sm ring-4 ring-[#2ECC7D]/20"></div>
-</div>
-<!-- Paper Point -->
-<div class="absolute top-[45%] left-[55%] -translate-x-1/2 -translate-y-1/2">
-<div class="w-5 h-5 bg-[#499dfe] rounded-full border-2 border-white shadow-sm ring-4 ring-[#499dfe]/20"></div>
-</div>
-<!-- Container Point -->
-<div class="absolute top-[30%] left-[70%] -translate-x-1/2 -translate-y-1/2">
-<div class="w-5 h-5 bg-[#f2a320] rounded-full border-2 border-white shadow-sm ring-4 ring-[#f2a320]/20"></div>
-</div>
-<!-- Glass Point 2 -->
-<div class="absolute top-[65%] left-[40%] -translate-x-1/2 -translate-y-1/2">
-<div class="w-5 h-5 bg-[#2ECC7D] rounded-full border-2 border-white shadow-sm ring-4 ring-[#2ECC7D]/20"></div>
-</div>
-<!-- Paper Point 2 -->
-<div class="absolute top-[80%] left-[25%] -translate-x-1/2 -translate-y-1/2">
-<div class="w-5 h-5 bg-[#499dfe] rounded-full border-2 border-white shadow-sm ring-4 ring-[#499dfe]/20"></div>
-</div>
-<!-- Container Point 2 -->
-<div class="absolute top-[75%] left-[65%] -translate-x-1/2 -translate-y-1/2">
-<div class="w-5 h-5 bg-[#f2a320] rounded-full border-2 border-white shadow-sm ring-4 ring-[#f2a320]/20"></div>
-</div>
-<!-- Floating Action Button -->
-<button class="absolute bottom-4 right-4 w-[40px] h-[40px] bg-[#2ECC7D] text-white rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-lg">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">my_location</span>
-</button>
-<!-- Map Controls (Minimalist) -->
-<div class="absolute top-4 right-4 flex flex-col gap-2">
-<div class="bg-white/90 backdrop-blur-md p-1 rounded-lg flex flex-col items-center">
-<button class="p-2 hover:bg-gray-100 rounded-md transition-colors"><span class="material-symbols-outlined text-[20px] text-on-surface">add</span></button>
-<div class="h-[1px] w-4 bg-gray-200"></div>
-<button class="p-2 hover:bg-gray-100 rounded-md transition-colors"><span class="material-symbols-outlined text-[20px] text-on-surface">remove</span></button>
-</div>
-<button class="bg-white/90 backdrop-blur-md p-2 rounded-lg text-on-surface hover:bg-white transition-colors">
-<span class="material-symbols-outlined text-[20px]">layers</span>
-</button>
-</div>
-</main>
-</div>
-</body></html>
+      </div>
+      <button
+        class="mt-auto w-full py-3 bg-[#2ECC7D] text-white font-bold rounded-xl transition-transform active:scale-[0.98] hover:opacity-90">
+        Filtrar Mapa
+      </button>
+    </aside>
+    <!-- Main Map Area -->
+    <main class="ml-[280px] flex-1 relative bg-[#dde8dd] overflow-hidden" data-location="Cadiz, Spain">
+      <div
+        class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&amp;fit=crop&amp;q=80&amp;w=2000')] bg-cover bg-center mix-blend-overlay opacity-30"
+        data-alt="Minimalist abstract map of a coastal city with clean architectural lines and soft green tonal overlays">
+      </div>
+      <!-- Map Pointers -->
+      <!-- Glass Point -->
+      <div class="absolute top-[20%] left-[30%] -translate-x-1/2 -translate-y-1/2">
+        <div class="w-5 h-5 bg-[#2ECC7D] rounded-full border-2 border-white shadow-sm ring-4 ring-[#2ECC7D]/20"></div>
+      </div>
+      <!-- Paper Point -->
+      <div class="absolute top-[45%] left-[55%] -translate-x-1/2 -translate-y-1/2">
+        <div class="w-5 h-5 bg-[#499dfe] rounded-full border-2 border-white shadow-sm ring-4 ring-[#499dfe]/20"></div>
+      </div>
+      <!-- Container Point -->
+      <div class="absolute top-[30%] left-[70%] -translate-x-1/2 -translate-y-1/2">
+        <div class="w-5 h-5 bg-[#f2a320] rounded-full border-2 border-white shadow-sm ring-4 ring-[#f2a320]/20"></div>
+      </div>
+      <!-- Glass Point 2 -->
+      <div class="absolute top-[65%] left-[40%] -translate-x-1/2 -translate-y-1/2">
+        <div class="w-5 h-5 bg-[#2ECC7D] rounded-full border-2 border-white shadow-sm ring-4 ring-[#2ECC7D]/20"></div>
+      </div>
+      <!-- Paper Point 2 -->
+      <div class="absolute top-[80%] left-[25%] -translate-x-1/2 -translate-y-1/2">
+        <div class="w-5 h-5 bg-[#499dfe] rounded-full border-2 border-white shadow-sm ring-4 ring-[#499dfe]/20"></div>
+      </div>
+      <!-- Container Point 2 -->
+      <div class="absolute top-[75%] left-[65%] -translate-x-1/2 -translate-y-1/2">
+        <div class="w-5 h-5 bg-[#f2a320] rounded-full border-2 border-white shadow-sm ring-4 ring-[#f2a320]/20"></div>
+      </div>
+      <!-- Floating Action Button -->
+      <button
+        class="absolute bottom-4 right-4 w-[40px] h-[40px] bg-[#2ECC7D] text-white rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-lg">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">my_location</span>
+      </button>
+      <!-- Map Controls (Minimalist) -->
+      <div class="absolute top-4 right-4 flex flex-col gap-2">
+        <div class="bg-white/90 backdrop-blur-md p-1 rounded-lg flex flex-col items-center">
+          <button class="p-2 hover:bg-gray-100 rounded-md transition-colors"><span
+              class="material-symbols-outlined text-[20px] text-on-surface">add</span></button>
+          <div class="h-[1px] w-4 bg-gray-200"></div>
+          <button class="p-2 hover:bg-gray-100 rounded-md transition-colors"><span
+              class="material-symbols-outlined text-[20px] text-on-surface">remove</span></button>
+        </div>
+        <button class="bg-white/90 backdrop-blur-md p-2 rounded-lg text-on-surface hover:bg-white transition-colors">
+          <span class="material-symbols-outlined text-[20px]">layers</span>
+        </button>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>
