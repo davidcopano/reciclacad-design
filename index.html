@@ -115,7 +115,7 @@
   <div class="flex h-screen pt-[56px]">
     <!-- SideNavBar -->
     <aside
-      class="fixed left-0 top-[56px] w-[280px] h-[calc(100vh-56px)] z-40 bg-white dark:bg-slate-900 flex flex-col p-6 gap-6 font-['DM_Sans'] text-sm leading-relaxed ghost-border">
+      class="hidden md:flex flex-col fixed left-0 top-[56px] w-[280px] h-[calc(100vh-56px)] z-40 bg-white dark:bg-slate-900 p-6 gap-6 font-['DM_Sans'] text-sm leading-relaxed ghost-border">
       <div>
         <h1 class="text-xl font-bold font-headline text-on-background mb-1">Encuentra tu punto</h1>
         <p class="text-on-surface-variant opacity-70">Cádiz Sostenible</p>
@@ -221,43 +221,63 @@
       </div>
       <button
         class="mt-auto w-full py-3 bg-[#2ECC7D] text-white font-bold rounded-xl transition-transform active:scale-[0.98] hover:opacity-90">
-        Filtrar Mapa
+        Mis favoritos
       </button>
     </aside>
     <!-- Main Map Area -->
-    <main class="ml-[280px] flex-1 relative bg-[#dde8dd] overflow-hidden" data-location="Cadiz, Spain">
+    <main class="ml-0 md:ml-[280px] flex-1 relative bg-[#dde8dd] overflow-hidden" data-location="Cadiz, Spain">
       <div
         class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&amp;fit=crop&amp;q=80&amp;w=2000')] bg-cover bg-center mix-blend-overlay opacity-30"
         data-alt="Minimalist abstract map of a coastal city with clean architectural lines and soft green tonal overlays">
       </div>
+      <!-- Mobile Search Overlay -->
+      <div class="md:hidden absolute top-4 left-4 right-16 z-20">
+        <div class="bg-white/90 backdrop-blur-xl rounded-full flex items-center gap-2 px-4 py-2.5 shadow-sm">
+          <span class="material-symbols-outlined text-outline text-[20px]">search</span>
+          <input aria-label="Buscar punto de reciclaje" class="bg-transparent border-none outline-none text-sm flex-1 text-on-surface" placeholder="Buscar punto..." type="text" />
+        </div>
+      </div>
       <!-- Map Pointers -->
       <!-- Glass Point -->
       <div class="absolute top-[20%] left-[30%] -translate-x-1/2 -translate-y-1/2">
-        <div class="w-5 h-5 bg-[#2ECC7D] rounded-full border-2 border-white shadow-sm ring-4 ring-[#2ECC7D]/20"></div>
+        <button aria-label="Punto de reciclaje de vidrio" class="w-11 h-11 flex items-center justify-center">
+          <div class="w-5 h-5 bg-[#2ECC7D] rounded-full border-2 border-white shadow-sm ring-4 ring-[#2ECC7D]/20"></div>
+        </button>
       </div>
       <!-- Paper Point -->
       <div class="absolute top-[45%] left-[55%] -translate-x-1/2 -translate-y-1/2">
-        <div class="w-5 h-5 bg-[#499dfe] rounded-full border-2 border-white shadow-sm ring-4 ring-[#499dfe]/20"></div>
+        <button aria-label="Punto de reciclaje de papel" class="w-11 h-11 flex items-center justify-center">
+          <div class="w-5 h-5 bg-[#499dfe] rounded-full border-2 border-white shadow-sm ring-4 ring-[#499dfe]/20"></div>
+        </button>
       </div>
       <!-- Container Point -->
       <div class="absolute top-[30%] left-[70%] -translate-x-1/2 -translate-y-1/2">
-        <div class="w-5 h-5 bg-[#f2a320] rounded-full border-2 border-white shadow-sm ring-4 ring-[#f2a320]/20"></div>
+        <button aria-label="Punto de reciclaje de envases" class="w-11 h-11 flex items-center justify-center">
+          <div class="w-5 h-5 bg-[#f2a320] rounded-full border-2 border-white shadow-sm ring-4 ring-[#f2a320]/20"></div>
+        </button>
       </div>
       <!-- Glass Point 2 -->
       <div class="absolute top-[65%] left-[40%] -translate-x-1/2 -translate-y-1/2">
-        <div class="w-5 h-5 bg-[#2ECC7D] rounded-full border-2 border-white shadow-sm ring-4 ring-[#2ECC7D]/20"></div>
+        <button aria-label="Punto de reciclaje de vidrio" class="w-11 h-11 flex items-center justify-center">
+          <div class="w-5 h-5 bg-[#2ECC7D] rounded-full border-2 border-white shadow-sm ring-4 ring-[#2ECC7D]/20"></div>
+        </button>
       </div>
       <!-- Paper Point 2 -->
       <div class="absolute top-[80%] left-[25%] -translate-x-1/2 -translate-y-1/2">
-        <div class="w-5 h-5 bg-[#499dfe] rounded-full border-2 border-white shadow-sm ring-4 ring-[#499dfe]/20"></div>
+        <button aria-label="Punto de reciclaje de papel" class="w-11 h-11 flex items-center justify-center">
+          <div class="w-5 h-5 bg-[#499dfe] rounded-full border-2 border-white shadow-sm ring-4 ring-[#499dfe]/20"></div>
+        </button>
       </div>
       <!-- Container Point 2 -->
       <div class="absolute top-[75%] left-[65%] -translate-x-1/2 -translate-y-1/2">
-        <div class="w-5 h-5 bg-[#f2a320] rounded-full border-2 border-white shadow-sm ring-4 ring-[#f2a320]/20"></div>
+        <button aria-label="Punto de reciclaje de envases" class="w-11 h-11 flex items-center justify-center">
+          <div class="w-5 h-5 bg-[#f2a320] rounded-full border-2 border-white shadow-sm ring-4 ring-[#f2a320]/20"></div>
+        </button>
       </div>
       <!-- Floating Action Button -->
       <button
-        class="absolute bottom-4 right-4 w-[40px] h-[40px] bg-[#2ECC7D] text-white rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-lg">
+        aria-label="Mi ubicación"
+        class="absolute bottom-[88px] right-4 md:bottom-4 w-11 h-11 bg-[#2ECC7D] text-white rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-lg">
         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">my_location</span>
       </button>
       <!-- Map Controls (Minimalist) -->
@@ -275,6 +295,31 @@
       </div>
     </main>
   </div>
+  <!-- BottomNavBar (Mobile Only) -->
+  <nav aria-label="Categorías de reciclaje" class="md:hidden fixed bottom-0 left-0 w-full h-[72px] bg-white flex items-center justify-around px-2 z-50">
+    <button class="flex flex-col items-center gap-1 text-[#006D3E] min-w-[44px] min-h-[44px] justify-center">
+      <div class="bg-[#2ECC7D]/20 px-4 py-1 rounded-full">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">recycling</span>
+      </div>
+      <span class="text-[10px] font-bold uppercase tracking-tighter">Vidrio</span>
+    </button>
+    <button class="flex flex-col items-center gap-1 text-outline min-w-[44px] min-h-[44px] justify-center">
+      <span class="material-symbols-outlined">description</span>
+      <span class="text-[10px] font-bold uppercase tracking-tighter">Papel</span>
+    </button>
+    <button class="flex flex-col items-center gap-1 text-outline min-w-[44px] min-h-[44px] justify-center">
+      <span class="material-symbols-outlined">inventory_2</span>
+      <span class="text-[10px] font-bold uppercase tracking-tighter">Envases</span>
+    </button>
+    <button class="flex flex-col items-center gap-1 text-outline min-w-[44px] min-h-[44px] justify-center">
+      <span class="material-symbols-outlined">battery_charging_full</span>
+      <span class="text-[10px] font-bold uppercase tracking-tighter">Pilas</span>
+    </button>
+    <button class="flex flex-col items-center gap-1 text-outline min-w-[44px] min-h-[44px] justify-center">
+      <span class="material-symbols-outlined">checkroom</span>
+      <span class="text-[10px] font-bold uppercase tracking-tighter">Ropa</span>
+    </button>
+  </nav>
 </body>
 
 </html>
