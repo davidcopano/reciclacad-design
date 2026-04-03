@@ -109,8 +109,8 @@
       ReciclaCAD
     </div>
     <div class="ml-auto flex items-center gap-4">
-      <button class="text-gray-400 hover:opacity-80 transition-opacity">
-        <span class="material-symbols-outlined">account_circle</span>
+      <button aria-label="Mi cuenta" class="text-gray-400 hover:opacity-80 transition-opacity">
+        <span aria-hidden="true" class="material-symbols-outlined">account_circle</span>
       </button>
     </div>
   </header>
@@ -123,64 +123,67 @@
         <p class="text-outline text-xs">Cádiz Sostenible</p>
       </div>
       <nav class="flex flex-col gap-2">
-        <div
-          class="flex items-center gap-3 text-gray-500 bg-gray-100 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors cursor-pointer">
-          <span class="material-symbols-outlined text-[#2ECC7D]">recycling</span>
+        <button
+          class="flex items-center gap-3 text-gray-500 bg-gray-100 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors w-full text-left">
+          <span aria-hidden="true" class="material-symbols-outlined text-[#2ECC7D]">recycling</span>
           <span>Vidrio</span>
-        </div>
-        <div
-          class="flex items-center gap-3 text-gray-500 bg-gray-100 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors cursor-pointer">
-          <span class="material-symbols-outlined text-[#2ECC7D]">description</span>
+        </button>
+        <button
+          class="flex items-center gap-3 text-gray-500 bg-gray-100 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors w-full text-left">
+          <span aria-hidden="true" class="material-symbols-outlined text-[#2ECC7D]">description</span>
           <span>Papel</span>
-        </div>
-        <div
-          class="flex items-center gap-3 text-gray-500 bg-gray-100 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors cursor-pointer">
-          <span class="material-symbols-outlined text-[#2ECC7D]">inventory_2</span>
+        </button>
+        <button
+          class="flex items-center gap-3 text-gray-500 bg-gray-100 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors w-full text-left">
+          <span aria-hidden="true" class="material-symbols-outlined text-[#2ECC7D]">inventory_2</span>
           <span>Envases</span>
-        </div>
+        </button>
       </nav>
       <div class="mt-4 flex flex-col gap-4 overflow-y-auto">
         <h2 class="font-['Plus_Jakarta_Sans'] font-bold text-[15px] text-on-surface px-1">Mis favoritos</h2>
         <div class="flex flex-col gap-3">
           <!-- Favorite Item 1 -->
-          <div
-            class="bg-surface-container-lowest p-4 rounded-xl border-outline-variant border-opacity-15 border hover:scale-[0.98] transition-transform duration-200 cursor-pointer">
+          <button
+            aria-label="Calle Ancha, 12 — Papel y Cartón, a 250 metros. Ver detalle"
+            class="bg-surface-container-lowest p-4 rounded-xl border-outline-variant border-opacity-15 border hover:scale-[0.98] transition-transform duration-200 w-full text-left">
             <div class="flex justify-between items-start mb-2">
               <span class="text-[10px] font-bold text-secondary uppercase tracking-wider">Papel y Cartón</span>
-              <span class="material-symbols-outlined text-[#F2A320] favorite-fill text-lg">favorite</span>
+              <span aria-hidden="true" class="material-symbols-outlined text-[#F2A320] favorite-fill text-lg">favorite</span>
             </div>
             <h3 class="font-bold text-on-surface mb-1">Calle Ancha, 12</h3>
             <div class="flex items-center gap-2 text-outline text-xs">
-              <span class="material-symbols-outlined text-[14px]">distance</span>
+              <span aria-hidden="true" class="material-symbols-outlined text-[14px]">distance</span>
               <span>250m</span>
             </div>
-          </div>
+          </button>
           <!-- Favorite Item 2 -->
-          <div
-            class="bg-surface-container-lowest p-4 rounded-xl border-outline-variant border-opacity-15 border hover:scale-[0.98] transition-transform duration-200 cursor-pointer">
+          <button
+            aria-label="Plaza Mina, 4 — Vidrio, a 400 metros. Ver detalle"
+            class="bg-surface-container-lowest p-4 rounded-xl border-outline-variant border-opacity-15 border hover:scale-[0.98] transition-transform duration-200 w-full text-left">
             <div class="flex justify-between items-start mb-2">
               <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Vidrio</span>
-              <span class="material-symbols-outlined text-[#F2A320] favorite-fill text-lg">favorite</span>
+              <span aria-hidden="true" class="material-symbols-outlined text-[#F2A320] favorite-fill text-lg">favorite</span>
             </div>
             <h3 class="font-bold text-on-surface mb-1">Plaza Mina, 4</h3>
             <div class="flex items-center gap-2 text-outline text-xs">
-              <span class="material-symbols-outlined text-[14px]">distance</span>
+              <span aria-hidden="true" class="material-symbols-outlined text-[14px]">distance</span>
               <span>400m</span>
             </div>
-          </div>
+          </button>
           <!-- Favorite Item 3 -->
-          <div
-            class="bg-surface-container-lowest p-4 rounded-xl border-outline-variant border-opacity-15 border hover:scale-[0.98] transition-transform duration-200 cursor-pointer">
+          <button
+            aria-label="Mercado Central — Pilas, a 850 metros. Ver detalle"
+            class="bg-surface-container-lowest p-4 rounded-xl border-outline-variant border-opacity-15 border hover:scale-[0.98] transition-transform duration-200 w-full text-left">
             <div class="flex justify-between items-start mb-2">
               <span class="text-[10px] font-bold text-tertiary uppercase tracking-wider">Pilas</span>
-              <span class="material-symbols-outlined text-[#F2A320] favorite-fill text-lg">favorite</span>
+              <span aria-hidden="true" class="material-symbols-outlined text-[#F2A320] favorite-fill text-lg">favorite</span>
             </div>
             <h3 class="font-bold text-on-surface mb-1">Mercado Central</h3>
             <div class="flex items-center gap-2 text-outline text-xs">
-              <span class="material-symbols-outlined text-[14px]">distance</span>
+              <span aria-hidden="true" class="material-symbols-outlined text-[14px]">distance</span>
               <span>850m</span>
             </div>
-          </div>
+          </button>
         </div>
       </div>
       <div class="mt-auto pt-6 border-t border-surface-container-high">
@@ -196,8 +199,7 @@
     <main class="ml-0 w-full md:ml-[280px] md:w-[calc(100%-280px)] h-full relative bg-surface-container-low">
       <!-- Map Background Representation -->
       <div class="absolute inset-0 z-0">
-        <img class="w-full h-full object-cover opacity-60"
-          data-alt="clean minimalist map of cadmium city with soft gray and blue tones showing streets and urban planning from above"
+        <img alt="Plano urbano de Cádiz con calles y línea de costa en tonos grises suaves" class="w-full h-full object-cover opacity-60"
           data-location="Cádiz"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtZLtMElGK2dV7sqCbjxsx-tb1MMNSX6vD7rocTuLHyvMP_qGXwiGVQhS6joeunlQvNOIh1YerMyiNdXPaC92s5Yzt1UoB2d2uO03Yg9JEAXGn3Jd-mtq7w0XFIcxxqD039gkQ5DfmBZe1BdsjX5Yt-8otWQpDrX-Ry8J90EO8nDO7KYp31n4edFpA2gsL2uyuACmoGq08NB_SAlQEaWTlOlWEDKulVqDyBigq9nD-T4X5cJSyuPGwrkOFnCMEcbxZSxYnQG7N2XaT" />
       </div>
@@ -254,7 +256,7 @@
               Destacado</span>
             <h4 class="text-xl font-headline font-bold mt-2">Calle Ancha, 12</h4>
           </div>
-          <span class="material-symbols-outlined text-[#F2A320] favorite-fill">favorite</span>
+          <span aria-label="Eliminar de favoritos" class="material-symbols-outlined text-[#F2A320] favorite-fill">favorite</span>
         </div>
         <div class="flex flex-col gap-4">
           <div class="flex justify-between items-end">
