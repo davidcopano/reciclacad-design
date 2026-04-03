@@ -13,9 +13,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
     rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-    rel="stylesheet" />
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -68,7 +65,8 @@
             "on-tertiary-fixed-variant": "#633f00",
             "surface-container": "#edeeef",
             "background": "#f8f9fa",
-            "secondary-fixed-dim": "#a4c9ff"
+            "secondary-fixed-dim": "#a4c9ff",
+            "neutral-header": "#2d2d2d"
           },
           "borderRadius": {
             "DEFAULT": "0.125rem",
@@ -79,7 +77,8 @@
           "fontFamily": {
             "headline": ["Plus Jakarta Sans"],
             "body": ["Be Vietnam Pro"],
-            "label": ["Be Vietnam Pro"]
+            "label": ["Be Vietnam Pro"],
+            "ui": ["DM Sans"]
           }
         },
       },
@@ -96,16 +95,15 @@
 
     body {
       font-family: 'Be Vietnam Pro', sans-serif;
-      background-color: #f8f9fa;
     }
   </style>
 </head>
 
-<body class="overflow-hidden">
+<body class="bg-background text-on-background overflow-hidden">
   <!-- TopNavBar -->
-  <header class="fixed top-0 left-0 w-full h-[56px] z-50 bg-[#2D2D2D] flex items-center px-4 w-full h-[56px]">
+  <header class="fixed top-0 left-0 w-full h-[56px] z-50 bg-neutral-header flex items-center px-4">
     <div
-      class="flex items-center gap-2 text-base font-bold text-white before:content-[''] before:w-2 before:h-2 before:bg-[#2ECC7D] before:rounded-full font-['Plus_Jakarta_Sans'] tracking-tight">
+      class="flex items-center gap-2 text-base font-bold text-white before:content-[''] before:w-2 before:h-2 before:bg-primary-container before:rounded-full font-headline tracking-tight">
       ReciclaCAD
     </div>
     <div class="ml-auto flex items-center gap-4">
@@ -115,7 +113,7 @@
   <div class="flex h-screen pt-[56px]">
     <!-- SideNavBar -->
     <aside
-      class="hidden md:flex flex-col fixed left-0 top-[56px] w-[280px] h-[calc(100vh-56px)] z-40 bg-white dark:bg-slate-900 p-6 gap-6 font-['DM_Sans'] text-sm leading-relaxed ghost-border">
+      class="hidden md:flex flex-col fixed left-0 top-[56px] w-[280px] h-[calc(100vh-56px)] z-40 bg-white dark:bg-inverse-surface p-6 gap-6 font-ui text-sm leading-relaxed ghost-border">
       <div>
         <h1 class="text-xl font-bold font-headline text-on-background mb-1">Encuentra tu punto</h1>
         <p class="text-on-surface-variant opacity-70">Cádiz Sostenible</p>
@@ -133,31 +131,31 @@
       <div class="flex flex-wrap gap-2">
         <!-- Vidrio (Primary) -->
         <button
-          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-[#e8f8f0] text-[#1a7a4a] border border-[#2ECC7D] font-medium transition-transform active:scale-[0.98]">
+          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-primary-container/15 text-on-primary-container border border-primary-container font-medium transition-transform active:scale-[0.98]">
           <span class="material-symbols-outlined text-[16px]">recycling</span>
           Vidrio
         </button>
         <!-- Papel (Secondary) -->
         <button
-          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-[#e8f0ff] text-[#1a4a9e] border border-[#499dfe] font-medium transition-transform active:scale-[0.98]">
+          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-secondary-container/15 text-on-secondary-container border border-secondary-container font-medium transition-transform active:scale-[0.98]">
           <span class="material-symbols-outlined text-[16px]">description</span>
           Papel
         </button>
         <!-- Envases (Tertiary) -->
         <button
-          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-[#fff8e8] text-[#9e6a1a] border border-[#f2a320] font-medium transition-transform active:scale-[0.98]">
+          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-tertiary-container/15 text-on-tertiary-container border border-tertiary-container font-medium transition-transform active:scale-[0.98]">
           <span class="material-symbols-outlined text-[16px]">inventory_2</span>
           Envases
         </button>
         <!-- Pilas (Inactive) -->
         <button
-          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-gray-100 text-gray-500 font-medium transition-transform active:scale-[0.98]">
+          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-surface-container text-on-surface-variant font-medium transition-transform active:scale-[0.98]">
           <span class="material-symbols-outlined text-[16px]">battery_charging_full</span>
           Pilas
         </button>
         <!-- Ropa (Inactive) -->
         <button
-          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-gray-100 text-gray-500 font-medium transition-transform active:scale-[0.98]">
+          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-surface-container text-on-surface-variant font-medium transition-transform active:scale-[0.98]">
           <span class="material-symbols-outlined text-[16px]">checkroom</span>
           Ropa
         </button>
@@ -225,12 +223,12 @@
         </div>
       </div>
       <button
-        class="mt-auto w-full py-3 bg-[#2ECC7D] text-white font-bold rounded-xl transition-transform active:scale-[0.98] hover:opacity-90">
+        class="mt-auto w-full py-3 bg-primary-container text-on-primary-container font-bold rounded-xl transition-transform active:scale-[0.98] hover:opacity-90">
         Mis favoritos
       </button>
     </aside>
     <!-- Main Map Area -->
-    <main class="ml-0 md:ml-[280px] flex-1 relative bg-[#dde8dd] overflow-hidden" data-location="Cadiz, Spain">
+    <main class="ml-0 md:ml-[280px] flex-1 relative bg-surface-container-low overflow-hidden" data-location="Cadiz, Spain">
       <div
         class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&amp;fit=crop&amp;q=80&amp;w=2000')] bg-cover bg-center mix-blend-overlay opacity-30"
         data-alt="Minimalist abstract map of a coastal city with clean architectural lines and soft green tonal overlays">
@@ -246,52 +244,52 @@
       <!-- Glass Point -->
       <div class="absolute top-[20%] left-[30%] -translate-x-1/2 -translate-y-1/2">
         <button aria-label="Punto de reciclaje de vidrio" class="w-11 h-11 flex items-center justify-center">
-          <div class="w-5 h-5 bg-[#2ECC7D] rounded-full border-2 border-white shadow-sm ring-4 ring-[#2ECC7D]/20"></div>
+          <div class="w-5 h-5 bg-primary-container rounded-full border-2 border-white shadow-sm ring-4 ring-primary-container/20"></div>
         </button>
       </div>
       <!-- Paper Point -->
       <div class="absolute top-[45%] left-[55%] -translate-x-1/2 -translate-y-1/2">
         <button aria-label="Punto de reciclaje de papel" class="w-11 h-11 flex items-center justify-center">
-          <div class="w-5 h-5 bg-[#499dfe] rounded-full border-2 border-white shadow-sm ring-4 ring-[#499dfe]/20"></div>
+          <div class="w-5 h-5 bg-secondary-container rounded-full border-2 border-white shadow-sm ring-4 ring-secondary-container/20"></div>
         </button>
       </div>
       <!-- Container Point -->
       <div class="absolute top-[30%] left-[70%] -translate-x-1/2 -translate-y-1/2">
         <button aria-label="Punto de reciclaje de envases" class="w-11 h-11 flex items-center justify-center">
-          <div class="w-5 h-5 bg-[#f2a320] rounded-full border-2 border-white shadow-sm ring-4 ring-[#f2a320]/20"></div>
+          <div class="w-5 h-5 bg-tertiary-container rounded-full border-2 border-white shadow-sm ring-4 ring-tertiary-container/20"></div>
         </button>
       </div>
       <!-- Glass Point 2 -->
       <div class="absolute top-[65%] left-[40%] -translate-x-1/2 -translate-y-1/2">
         <button aria-label="Punto de reciclaje de vidrio" class="w-11 h-11 flex items-center justify-center">
-          <div class="w-5 h-5 bg-[#2ECC7D] rounded-full border-2 border-white shadow-sm ring-4 ring-[#2ECC7D]/20"></div>
+          <div class="w-5 h-5 bg-primary-container rounded-full border-2 border-white shadow-sm ring-4 ring-primary-container/20"></div>
         </button>
       </div>
       <!-- Paper Point 2 -->
       <div class="absolute top-[80%] left-[25%] -translate-x-1/2 -translate-y-1/2">
         <button aria-label="Punto de reciclaje de papel" class="w-11 h-11 flex items-center justify-center">
-          <div class="w-5 h-5 bg-[#499dfe] rounded-full border-2 border-white shadow-sm ring-4 ring-[#499dfe]/20"></div>
+          <div class="w-5 h-5 bg-secondary-container rounded-full border-2 border-white shadow-sm ring-4 ring-secondary-container/20"></div>
         </button>
       </div>
       <!-- Container Point 2 -->
       <div class="absolute top-[75%] left-[65%] -translate-x-1/2 -translate-y-1/2">
         <button aria-label="Punto de reciclaje de envases" class="w-11 h-11 flex items-center justify-center">
-          <div class="w-5 h-5 bg-[#f2a320] rounded-full border-2 border-white shadow-sm ring-4 ring-[#f2a320]/20"></div>
+          <div class="w-5 h-5 bg-tertiary-container rounded-full border-2 border-white shadow-sm ring-4 ring-tertiary-container/20"></div>
         </button>
       </div>
       <!-- Floating Action Button -->
       <button
         aria-label="Mi ubicación"
-        class="absolute bottom-[88px] right-4 md:bottom-4 w-11 h-11 bg-[#2ECC7D] text-white rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-lg">
+        class="absolute bottom-[88px] right-4 md:bottom-4 w-11 h-11 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-lg">
         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">my_location</span>
       </button>
       <!-- Map Controls (Minimalist) -->
       <div class="absolute top-4 right-4 flex flex-col gap-2">
         <div class="bg-white/90 backdrop-blur-md p-1 rounded-lg flex flex-col items-center">
-          <button aria-label="Ampliar mapa" class="p-2 hover:bg-gray-100 rounded-md transition-colors"><span
+          <button aria-label="Ampliar mapa" class="p-2 hover:bg-surface-container rounded-md transition-colors"><span
               aria-hidden="true" class="material-symbols-outlined text-[20px] text-on-surface">add</span></button>
-          <div class="h-[1px] w-4 bg-gray-200"></div>
-          <button aria-label="Alejar mapa" class="p-2 hover:bg-gray-100 rounded-md transition-colors"><span
+          <div class="h-[1px] w-4 bg-surface-container-high"></div>
+          <button aria-label="Alejar mapa" class="p-2 hover:bg-surface-container rounded-md transition-colors"><span
               aria-hidden="true" class="material-symbols-outlined text-[20px] text-on-surface">remove</span></button>
         </div>
         <button aria-label="Ver capas del mapa" class="bg-white/90 backdrop-blur-md p-2 rounded-lg text-on-surface hover:bg-white transition-colors">
@@ -302,8 +300,8 @@
   </div>
   <!-- BottomNavBar (Mobile Only) -->
   <nav aria-label="Categorías de reciclaje" class="md:hidden fixed bottom-0 left-0 w-full h-[72px] bg-white flex items-center justify-around px-2 z-50">
-    <button class="flex flex-col items-center gap-1 text-[#006D3E] min-w-[44px] min-h-[44px] justify-center">
-      <div class="bg-[#2ECC7D]/20 px-4 py-1 rounded-full">
+    <button class="flex flex-col items-center gap-1 text-primary min-w-[44px] min-h-[44px] justify-center">
+      <div class="bg-primary-container/20 px-4 py-1 rounded-full">
         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">recycling</span>
       </div>
       <span class="text-[10px] font-bold uppercase tracking-tighter">Vidrio</span>

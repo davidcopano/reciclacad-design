@@ -14,9 +14,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
     rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-    rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script id="tailwind-config">
     tailwind.config = {
@@ -70,7 +67,8 @@
             "on-tertiary-fixed-variant": "#633f00",
             "surface-container": "#edeeef",
             "background": "#f8f9fa",
-            "secondary-fixed-dim": "#a4c9ff"
+            "secondary-fixed-dim": "#a4c9ff",
+            "neutral-header": "#2d2d2d"
           },
           "borderRadius": {
             "DEFAULT": "0.125rem",
@@ -82,7 +80,7 @@
             "headline": ["Plus Jakarta Sans"],
             "body": ["Be Vietnam Pro"],
             "label": ["Be Vietnam Pro"],
-            "dm": ["DM Sans"]
+            "ui": ["DM Sans"]
           }
         },
       },
@@ -96,26 +94,18 @@
     body {
       font-family: 'Be Vietnam Pro', sans-serif;
     }
-
-    .plus-jakarta {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    .dm-sans {
-      font-family: 'DM Sans', sans-serif;
-    }
   </style>
 </head>
 
 <body class="bg-background text-on-background overflow-hidden">
   <!-- TopNavBar -->
-  <header class="fixed top-0 left-0 w-full h-[56px] z-50 bg-[#2D2D2D] flex items-center px-4">
+  <header class="fixed top-0 left-0 w-full h-[56px] z-50 bg-neutral-header flex items-center px-4">
     <div
-      class="flex items-center gap-2 text-base font-bold text-white font-['Plus_Jakarta_Sans'] tracking-tight before:content-[''] before:w-2 before:h-2 before:bg-[#2ECC7D] before:rounded-full">
+      class="flex items-center gap-2 text-base font-bold text-white font-headline tracking-tight before:content-[''] before:w-2 before:h-2 before:bg-primary-container before:rounded-full">
       ReciclaCAD
     </div>
     <div class="ml-auto flex items-center gap-4">
-      <button aria-label="Mi cuenta" class="text-gray-400 hover:opacity-80 transition-opacity active:scale-95 duration-200">
+      <button aria-label="Mi cuenta" class="text-outline hover:opacity-80 transition-opacity active:scale-95 duration-200">
         <span aria-hidden="true" class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
       </button>
     </div>
@@ -126,37 +116,37 @@
     <aside class="hidden md:flex flex-col p-6 gap-6 w-[280px] bg-white h-full z-40 border-r border-outline-variant/15">
       <div class="space-y-1">
         <h2 class="font-headline text-lg font-bold text-on-surface">Encuentra tu punto</h2>
-        <p class="font-dm text-sm leading-relaxed text-secondary">Cádiz Sostenible</p>
+        <p class="font-ui text-sm leading-relaxed text-secondary">Cádiz Sostenible</p>
       </div>
       <nav class="flex flex-col gap-2">
         <button
-          class="flex items-center gap-3 bg-[#2ECC7D]/10 text-[#006D3E] font-semibold rounded-full px-4 py-2 w-full text-left transition-transform duration-200 hover:bg-[#2ECC7D]/15 active:scale-[0.98]">
+          class="flex items-center gap-3 bg-primary-container/10 text-primary font-semibold rounded-full px-4 py-2 w-full text-left transition-transform duration-200 hover:bg-primary-container/15 active:scale-[0.98]">
           <span aria-hidden="true" class="material-symbols-outlined text-lg" data-icon="recycling">recycling</span>
-          <span class="font-dm text-sm">Vidrio</span>
+          <span class="font-ui text-sm">Vidrio</span>
         </button>
         <button
-          class="flex items-center gap-3 text-gray-500 bg-gray-100 rounded-full px-4 py-2 w-full text-left hover:bg-gray-200 transition-colors active:scale-[0.98]">
+          class="flex items-center gap-3 text-on-surface-variant bg-surface-container rounded-full px-4 py-2 w-full text-left hover:bg-surface-container-high transition-colors active:scale-[0.98]">
           <span aria-hidden="true" class="material-symbols-outlined text-lg" data-icon="description">description</span>
-          <span class="font-dm text-sm">Papel</span>
+          <span class="font-ui text-sm">Papel</span>
         </button>
         <button
-          class="flex items-center gap-3 text-gray-500 bg-gray-100 rounded-full px-4 py-2 w-full text-left hover:bg-gray-200 transition-colors active:scale-[0.98]">
+          class="flex items-center gap-3 text-on-surface-variant bg-surface-container rounded-full px-4 py-2 w-full text-left hover:bg-surface-container-high transition-colors active:scale-[0.98]">
           <span aria-hidden="true" class="material-symbols-outlined text-lg" data-icon="inventory_2">inventory_2</span>
-          <span class="font-dm text-sm">Envases</span>
+          <span class="font-ui text-sm">Envases</span>
         </button>
         <button
-          class="flex items-center gap-3 text-gray-500 bg-gray-100 rounded-full px-4 py-2 w-full text-left hover:bg-gray-200 transition-colors active:scale-[0.98]">
+          class="flex items-center gap-3 text-on-surface-variant bg-surface-container rounded-full px-4 py-2 w-full text-left hover:bg-surface-container-high transition-colors active:scale-[0.98]">
           <span aria-hidden="true" class="material-symbols-outlined text-lg" data-icon="battery_charging_full">battery_charging_full</span>
-          <span class="font-dm text-sm">Pilas</span>
+          <span class="font-ui text-sm">Pilas</span>
         </button>
         <button
-          class="flex items-center gap-3 text-gray-500 bg-gray-100 rounded-full px-4 py-2 w-full text-left hover:bg-gray-200 transition-colors active:scale-[0.98]">
+          class="flex items-center gap-3 text-on-surface-variant bg-surface-container rounded-full px-4 py-2 w-full text-left hover:bg-surface-container-high transition-colors active:scale-[0.98]">
           <span aria-hidden="true" class="material-symbols-outlined text-lg" data-icon="checkroom">checkroom</span>
-          <span class="font-dm text-sm">Ropa</span>
+          <span class="font-ui text-sm">Ropa</span>
         </button>
       </nav>
       <button
-        class="mt-auto w-full py-3 px-4 bg-primary text-white rounded-full font-dm text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+        class="mt-auto w-full py-3 px-4 bg-primary text-white rounded-full font-ui text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
         Filtrar Mapa
       </button>
     </aside>
@@ -176,7 +166,7 @@
       </button>
       <button
         aria-label="Punto de reciclaje de vidrio — Plaza de las Flores (seleccionado)"
-        class="absolute top-1/2 left-1/2 z-10 w-10 h-10 bg-[#006D3E] rounded-full border-4 border-white flex items-center justify-center text-white ring-4 ring-[#006D3E]/20">
+        class="absolute top-1/2 left-1/2 z-10 w-10 h-10 bg-primary rounded-full border-4 border-white flex items-center justify-center text-white ring-4 ring-primary/20">
         <span aria-hidden="true" class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">recycling</span>
       </button>
       <button
@@ -186,9 +176,9 @@
       </button>
       <!-- Floating Detail Card (Bottom Right) -->
       <div
-        class="absolute bottom-8 right-8 z-30 w-[280px] bg-white border border-[#e0e0e0] rounded-[8px] p-4 flex flex-col gap-3">
+        class="absolute bottom-8 right-8 z-30 w-[280px] bg-white border border-outline-variant/15 rounded-xl p-4 flex flex-col gap-3">
         <div class="flex items-start justify-between">
-          <h3 class="plus-jakarta font-medium text-[14px] leading-tight text-on-surface">Punto de Reciclaje - Plaza de
+          <h3 class="font-headline font-medium text-[14px] leading-tight text-on-surface">Punto de Reciclaje - Plaza de
             las Flores</h3>
           <button aria-label="Añadir a favoritos" class="text-tertiary hover:scale-110 transition-transform">
             <span aria-hidden="true" class="material-symbols-outlined text-[18px]" data-icon="favorite">favorite</span>
@@ -205,10 +195,10 @@
         </div>
         <div class="flex items-center gap-1.5">
           <span class="material-symbols-outlined text-[16px] text-outline" data-icon="near_me">near_me</span>
-          <span class="dm-sans text-[12px] text-[#6c7b6f]">A 350 metros de tu ubicación</span>
+          <span class="font-ui text-[12px] text-outline">A 350 metros de tu ubicación</span>
         </div>
         <button
-          class="w-full h-[36px] bg-[#2ECC7D] hover:bg-[#27b971] active:scale-[0.98] transition-all text-white dm-sans font-medium text-[13px] rounded-[8px] flex items-center justify-center gap-2 mt-1">
+          class="w-full h-[36px] bg-primary-container hover:opacity-90 active:scale-[0.98] transition-all text-on-primary-container font-ui font-medium text-[13px] rounded-xl flex items-center justify-center gap-2 mt-1">
           Cómo llegar
         </button>
       </div>
@@ -234,8 +224,8 @@
   </div>
   <!-- BottomNavBar (Mobile Only) -->
   <nav aria-label="Categorías de reciclaje" class="md:hidden fixed bottom-0 left-0 w-full h-[72px] bg-white flex items-center justify-around px-2 z-50">
-    <button class="flex flex-col items-center gap-1 text-[#006D3E] min-w-[44px] min-h-[44px] justify-center">
-      <div class="bg-[#2ECC7D]/20 px-4 py-1 rounded-full">
+    <button class="flex flex-col items-center gap-1 text-primary min-w-[44px] min-h-[44px] justify-center">
+      <div class="bg-primary-container/20 px-4 py-1 rounded-full">
         <span aria-hidden="true" class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">recycling</span>
       </div>
       <span class="text-[10px] font-bold uppercase tracking-tighter">Vidrio</span>
