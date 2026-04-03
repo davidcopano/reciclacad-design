@@ -1,3 +1,98 @@
-# reciclacad-design
+# ReciclaCAD — Design
 
-HTML and TailwindCSS design of ReciclaCAD webapp.
+> UI prototype for ReciclaCAD, a recycling point finder for the city of Cádiz.
+
+[![HTML5](https://img.shields.io/badge/HTML5-static-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/docs/Web/HTML)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v3-38bdf8?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![Material Symbols](https://img.shields.io/badge/Material_Symbols-Outlined-4285F4?style=flat-square&logo=google&logoColor=white)](https://fonts.google.com/icons)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
+
+ReciclaCAD helps citizens of Cádiz find the nearest recycling point. This repository contains the full visual design as static HTML, built with Tailwind CSS v3, following the "The Urban Cartographer" design system — a blend of architectural precision and the airy character of Andalusia's coastline.
+
+## Screens
+
+| Screen | File | Description |
+|--------|------|-------------|
+| Main map | [index.html](index.html) | Map view with search, category filters, and nearest points list |
+| Point details | [point-details.html](point-details.html) | Full detail sheet for a recycling point |
+| Favourites | [favorites.html](favorites.html) | User-saved recycling points |
+
+## Features
+
+- **Two usage contexts** — optimised for quick on-the-street mobile use and relaxed desktop planning
+- **Light & dark mode** — full support via Tailwind `dark:` utilities
+- **Responsive layout** — fluid from mobile to wide desktop
+- **Custom design system** — Material You-inspired colour palette, editorial typography, glassmorphism overlays
+- **Accessibility** — targets WCAG AA; semantic `aria-*` attributes and `prefers-reduced-motion` support throughout
+- **Zero JS dependencies** — pure static HTML, ideal for developer handoff
+
+## Tech stack
+
+| Technology | Role |
+|------------|------|
+| HTML5 | Semantic screen structure |
+| [Tailwind CSS v3](https://tailwindcss.com) (CDN) | Utility classes and design tokens |
+| [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) | Display & headline typeface |
+| [Be Vietnam Pro](https://fonts.google.com/specimen/Be+Vietnam+Pro) | Body & label typeface |
+| [DM Sans](https://fonts.google.com/specimen/DM+Sans) | UI component typeface |
+| [Material Symbols Outlined](https://fonts.google.com/icons) | Icon set |
+
+## Getting started
+
+No build step required. Clone the repo and open any HTML file directly in your browser:
+
+```bash
+git clone https://github.com/<owner>/reciclacad-design.git
+cd reciclacad-design
+```
+
+Then open `index.html`, `point-details.html`, or `favorites.html` in your browser. All assets load from CDN.
+
+> [!TIP]
+> Use the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) VS Code extension for instant hot-reload while exploring or editing the design files.
+
+## Design system
+
+The full design specification lives in [DESIGN.md](DESIGN.md). Key principles:
+
+### North Star: "The Urban Cartographer"
+
+Architectural blueprint precision meets the airy lightness of the Andalusian coast. The aesthetic—*Breathable Precision*—favours generous white space, intentional asymmetry, and tonal layering over hard outlines.
+
+### Colour palette
+
+| Role | Base | Container | Metaphor |
+|------|------|-----------|----------|
+| Primary | `#006D3E` | `#2ECC7D` | Glass |
+| Secondary | `#005FAD` | `#499DFE` | Paper |
+| Tertiary | `#835500` | `#F2A320` | Packaging |
+| Surface | `#F8F9FA` | — | Canvas |
+
+### The No-Line Rule
+
+Solid `1px` borders are prohibited. Depth is achieved through tonal surface shifts (`surface` → `surface-container-low` → `surface-container-lowest`) and glassmorphism for floating elements (`surface-container-lowest` at 85% opacity + `backdrop-blur-xl`).
+
+### Typography
+
+| Usage | Font | Weight | Notes |
+|-------|------|--------|-------|
+| Headlines | Plus Jakarta Sans | 700–800 | `letter-spacing: -0.02em` |
+| Body & labels | Be Vietnam Pro | 400–600 | Neutral, readable |
+| UI components | DM Sans | 400–700 | Chips, buttons, nav |
+
+## Project structure
+
+```
+reciclacad-design/
+├── index.html          # Main view — map, search, and points list
+├── point-details.html  # Recycling point detail sheet
+├── favorites.html      # User's saved favourite points
+└── DESIGN.md           # Full design system documentation
+```
+
+## Resources
+
+- [DESIGN.md](DESIGN.md) — Colour system, typography, components, and design dos & don'ts
+- [Tailwind CSS v3 Docs](https://v3.tailwindcss.com) — Documentation for the version used
+- [Material You (M3)](https://m3.material.io) — Reference for the colour system and component patterns
+- [Material Symbols](https://fonts.google.com/icons) — Icon library reference
