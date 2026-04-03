@@ -100,6 +100,15 @@
       outline-offset: 2px;
     }
 
+    @keyframes favorite-pop {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+    .btn-favorite:active {
+      animation: favorite-pop 0.25s ease-out;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, ::before, ::after {
         animation-duration: 0.01ms !important;
@@ -128,7 +137,7 @@
     <!-- SideNavBar -->
     <aside class="hidden md:flex flex-col p-6 gap-6 w-[280px] bg-white dark:bg-inverse-surface h-full z-40 border-r border-outline-variant/15">
       <div class="space-y-1">
-        <h2 class="font-headline text-lg font-bold text-on-surface">Encuentra tu punto</h2>
+        <h2 class="font-ui text-sm font-medium text-on-surface-variant">Encuentra tu punto</h2>
         <p class="font-ui text-sm leading-relaxed text-secondary">Cádiz Sostenible</p>
       </div>
       <nav class="flex flex-col gap-2">
@@ -194,11 +203,16 @@
       <div
         class="absolute bottom-[84px] left-3 right-3 md:bottom-8 md:right-8 md:left-auto md:w-[280px] z-30 bg-white/90 dark:bg-inverse-surface/90 dark:text-inverse-on-surface backdrop-blur-xl rounded-2xl p-4 flex flex-col gap-3">
         <div class="flex items-start justify-between">
-          <h1 class="font-headline font-medium text-[14px] leading-tight text-on-surface">Punto de Reciclaje - Plaza de
+          <h1 class="font-headline font-bold text-base leading-tight text-on-surface">Punto de Reciclaje - Plaza de
             las Flores</h1>
-          <button aria-label="Añadir a favoritos" class="text-tertiary hover:scale-110 transition-transform">
-            <span aria-hidden="true" class="material-symbols-outlined text-[18px]" data-icon="favorite">favorite</span>
-          </button>
+          <div class="flex items-center gap-1 flex-shrink-0 ml-2">
+            <button aria-label="Añadir a favoritos" class="text-tertiary hover:scale-110 transition-transform btn-favorite w-8 h-8 flex items-center justify-center rounded-full">
+              <span aria-hidden="true" class="material-symbols-outlined text-[18px]" data-icon="favorite">favorite</span>
+            </button>
+            <button aria-label="Cerrar tarjeta" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container/50 transition-colors text-outline">
+              <span aria-hidden="true" class="material-symbols-outlined text-[18px]">close</span>
+            </button>
+          </div>
         </div>
         <!-- Chips Row -->
         <div class="flex flex-wrap gap-1.5">

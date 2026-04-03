@@ -102,6 +102,15 @@
       outline-offset: 2px;
     }
 
+    @keyframes favorite-pop {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+    .btn-favorite:active {
+      animation: favorite-pop 0.25s ease-out;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, ::before, ::after {
         animation-duration: 0.01ms !important;
@@ -129,7 +138,7 @@
       class="hidden md:flex flex-col fixed left-0 top-[56px] w-[280px] h-[calc(100vh-56px)] z-40 bg-white dark:bg-inverse-surface p-6 gap-6 font-ui text-sm leading-relaxed ghost-border">
       <div>
         <h1 class="text-xl font-bold font-headline text-on-background mb-1">Encuentra tu punto</h1>
-        <p class="text-on-surface-variant opacity-70">Cádiz Sostenible</p>
+        <p class="text-outline">Cádiz Sostenible</p>
       </div>
       <!-- Search Bar -->
       <div class="relative">
@@ -179,7 +188,7 @@
         </button>
       </div>
       <div class="mt-4 flex-1 overflow-y-auto">
-        <div class="text-[12px] text-on-surface-variant opacity-60 mb-4 px-2 uppercase tracking-wider font-medium">342
+        <div class="text-[12px] text-outline mb-4 px-2 uppercase tracking-wider font-medium">342
           puntos encontrados</div>
         <div class="space-y-1">
           <!-- Point Item 1 -->
@@ -190,11 +199,11 @@
               <div class="w-[10px] h-[10px] rounded-full bg-primary-container flex-shrink-0"></div>
               <div>
                 <div class="text-[13px] font-medium text-on-surface">Av. Ana de Viya, 12</div>
-                <div class="text-[11px] text-on-surface-variant opacity-70">A 250m de ti</div>
+                <div class="text-[11px] text-outline">A 250m de ti</div>
               </div>
             </div>
             <span aria-hidden="true"
-              class="material-symbols-outlined text-outline-variant opacity-40 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
+              class="material-symbols-outlined text-outline-variant opacity-70 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
           </button>
           <!-- Point Item 2 -->
           <button
@@ -204,11 +213,11 @@
               <div class="w-[10px] h-[10px] rounded-full bg-secondary-container flex-shrink-0"></div>
               <div>
                 <div class="text-[13px] font-medium text-on-surface">Plaza de las Flores, 3</div>
-                <div class="text-[11px] text-on-surface-variant opacity-70">A 400m de ti</div>
+                <div class="text-[11px] text-outline">A 400m de ti</div>
               </div>
             </div>
             <span aria-hidden="true"
-              class="material-symbols-outlined text-outline-variant opacity-40 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
+              class="material-symbols-outlined text-outline-variant opacity-70 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
           </button>
           <!-- Point Item 3 -->
           <button
@@ -218,11 +227,11 @@
               <div class="w-[10px] h-[10px] rounded-full bg-tertiary-container flex-shrink-0"></div>
               <div>
                 <div class="text-[13px] font-medium text-on-surface">Calle Columela, 18</div>
-                <div class="text-[11px] text-on-surface-variant opacity-70">A 600m de ti</div>
+                <div class="text-[11px] text-outline">A 600m de ti</div>
               </div>
             </div>
             <span aria-hidden="true"
-              class="material-symbols-outlined text-outline-variant opacity-40 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
+              class="material-symbols-outlined text-outline-variant opacity-70 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
           </button>
           <!-- Point Item 4 -->
           <button
@@ -232,16 +241,16 @@
               <div class="w-[10px] h-[10px] rounded-full bg-primary-container flex-shrink-0"></div>
               <div>
                 <div class="text-[13px] font-medium text-on-surface">Paseo Marítimo, 45</div>
-                <div class="text-[11px] text-on-surface-variant opacity-70">A 850m de ti</div>
+                <div class="text-[11px] text-outline">A 850m de ti</div>
               </div>
             </div>
             <span aria-hidden="true"
-              class="material-symbols-outlined text-outline-variant opacity-40 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
+              class="material-symbols-outlined text-outline-variant opacity-70 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
           </button>
         </div>
       </div>
       <button
-        class="mt-auto w-full py-3 bg-primary-container text-on-primary-container font-bold rounded-xl transition-transform active:scale-[0.98] hover:opacity-90">
+        class="mt-auto w-full py-3 bg-primary text-on-primary font-bold rounded-full transition-transform active:scale-[0.98] hover:opacity-90">
         Mis favoritos
       </button>
     </aside>
@@ -307,13 +316,13 @@
       <!-- Map Controls (Minimalist) -->
       <div class="absolute top-4 right-4 flex flex-col gap-2">
         <div class="bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md p-1 rounded-lg flex flex-col items-center">
-          <button aria-label="Ampliar mapa" class="p-2 hover:bg-surface-container rounded-md transition-colors"><span
+          <button aria-label="Ampliar mapa" class="w-11 h-11 flex items-center justify-center hover:bg-surface-container rounded-md transition-colors"><span
               aria-hidden="true" class="material-symbols-outlined text-[20px] text-on-surface">add</span></button>
           <div class="h-[1px] w-4 bg-surface-container-high"></div>
-          <button aria-label="Alejar mapa" class="p-2 hover:bg-surface-container rounded-md transition-colors"><span
+          <button aria-label="Alejar mapa" class="w-11 h-11 flex items-center justify-center hover:bg-surface-container rounded-md transition-colors"><span
               aria-hidden="true" class="material-symbols-outlined text-[20px] text-on-surface">remove</span></button>
         </div>
-        <button aria-label="Ver capas del mapa" class="bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md p-2 rounded-lg text-on-surface dark:text-inverse-on-surface hover:bg-white dark:hover:bg-inverse-surface transition-colors">
+        <button aria-label="Ver capas del mapa" class="w-11 h-11 flex items-center justify-center bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md rounded-lg text-on-surface dark:text-inverse-on-surface hover:bg-white dark:hover:bg-inverse-surface transition-colors">
           <span aria-hidden="true" class="material-symbols-outlined text-[20px]">layers</span>
         </button>
       </div>
