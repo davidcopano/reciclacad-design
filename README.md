@@ -36,6 +36,8 @@ ReciclaCAD helps citizens of Cádiz find the nearest recycling point. This repos
 | [Be Vietnam Pro](https://fonts.google.com/specimen/Be+Vietnam+Pro) | Body & label typeface |
 | [DM Sans](https://fonts.google.com/specimen/DM+Sans) | UI component typeface |
 | [Material Symbols Outlined](https://fonts.google.com/icons) | Icon set |
+| [Google Stitch](https://stitch.withgoogle.com) | AI-assisted initial design generation |
+| [Impeccable](https://github.com/pbakaus/impeccable/) | AI agent skills for design refinement |
 
 ## Getting started
 
@@ -54,6 +56,13 @@ Then open `index.html`, `point-details.html`, or `favorites.html` in your browse
 ## Design system
 
 The full design specification lives in [DESIGN.md](DESIGN.md). Key principles:
+
+### Design tooling
+
+The workflow combined two AI-assisted tools:
+
+- **[Google Stitch](https://stitch.withgoogle.com)** — used for the initial design generation, turning the brief and colour system into a first-pass set of screens.
+- **[Impeccable](https://github.com/pbakaus/impeccable/)** — a collection of AI agent skills for VS Code Copilot, used to iteratively refine spacing, typography, accessibility, and design-system consistency across all screens.
 
 ### North Star: "The Urban Cartographer"
 
