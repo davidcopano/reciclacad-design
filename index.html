@@ -97,6 +97,11 @@
       font-family: 'Be Vietnam Pro', sans-serif;
     }
 
+    button:focus-visible {
+      outline: 2px solid rgba(0, 109, 62, 0.6);
+      outline-offset: 2px;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, ::before, ::after {
         animation-duration: 0.01ms !important;
@@ -139,30 +144,35 @@
       <div class="flex flex-wrap gap-2">
         <!-- Vidrio (Primary) -->
         <button
+          aria-pressed="true"
           class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-primary-container/15 text-on-primary-container border border-primary-container font-medium transition-transform active:scale-[0.98]">
           <span class="material-symbols-outlined text-[16px]">recycling</span>
           Vidrio
         </button>
         <!-- Papel (Secondary) -->
         <button
+          aria-pressed="true"
           class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-secondary-container/15 text-on-secondary-container border border-secondary-container font-medium transition-transform active:scale-[0.98]">
           <span class="material-symbols-outlined text-[16px]">description</span>
           Papel
         </button>
         <!-- Envases (Tertiary) -->
         <button
+          aria-pressed="true"
           class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-tertiary-container/15 text-on-tertiary-container border border-tertiary-container font-medium transition-transform active:scale-[0.98]">
           <span class="material-symbols-outlined text-[16px]">inventory_2</span>
           Envases
         </button>
         <!-- Pilas (Inactive) -->
         <button
+          aria-pressed="false"
           class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-surface-container text-on-surface-variant font-medium transition-transform active:scale-[0.98]">
           <span class="material-symbols-outlined text-[16px]">battery_charging_full</span>
           Pilas
         </button>
         <!-- Ropa (Inactive) -->
         <button
+          aria-pressed="false"
           class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-surface-container text-on-surface-variant font-medium transition-transform active:scale-[0.98]">
           <span class="material-symbols-outlined text-[16px]">checkroom</span>
           Ropa
