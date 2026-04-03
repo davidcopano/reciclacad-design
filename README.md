@@ -13,9 +13,12 @@ ReciclaCAD helps citizens of Cádiz find the nearest recycling point. This repos
 
 | Screen | File | Description |
 |--------|------|-------------|
-| Main map | [index.html](index.html) | Map view with search, category filters, and nearest points list |
+| Main map | [index.html](index.html) | Map view with search, category filters, and nearest points list — **primary reference for the webapp implementation** |
 | Point details | [point-details.html](point-details.html) | Full detail sheet for a recycling point |
 | Favourites | [favorites.html](favorites.html) | User-saved recycling points |
+
+> [!IMPORTANT]
+> `index.html` is the main reference file for the webapp to be developed. It contains the canonical layout, the Tailwind configuration (colour tokens, typography scale, border radii), and the full component set that all other screens are derived from.
 
 ## Features
 
