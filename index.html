@@ -321,15 +321,14 @@
       </div>
       <!-- Map Controls + FAB agrupados (top-right) -->
       <div class="absolute top-4 right-4 flex flex-col gap-2 z-20">
-        <div class="bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md p-1 rounded-lg flex flex-col items-center">
-          <button aria-label="Ampliar mapa"
-            class="w-11 h-11 flex items-center justify-center hover:bg-surface-container rounded-md transition-colors"><span
-              aria-hidden="true" class="material-symbols-outlined text-[20px] text-on-surface">add</span></button>
-          <div class="h-[1px] w-4 bg-surface-container-high"></div>
-          <button aria-label="Alejar mapa"
-            class="w-11 h-11 flex items-center justify-center hover:bg-surface-container rounded-md transition-colors"><span
-              aria-hidden="true" class="material-symbols-outlined text-[20px] text-on-surface">remove</span></button>
-        </div>
+        <button aria-label="Ampliar mapa"
+          class="w-11 h-11 flex items-center justify-center bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md rounded-lg text-on-surface dark:text-inverse-on-surface hover:bg-white dark:hover:bg-inverse-surface transition-colors">
+          <span aria-hidden="true" class="material-symbols-outlined text-[20px]">add</span>
+        </button>
+        <button aria-label="Alejar mapa"
+          class="w-11 h-11 flex items-center justify-center bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md rounded-lg text-on-surface dark:text-inverse-on-surface hover:bg-white dark:hover:bg-inverse-surface transition-colors">
+          <span aria-hidden="true" class="material-symbols-outlined text-[20px]">remove</span>
+        </button>
         <button aria-label="Ver capas del mapa"
           class="w-11 h-11 flex items-center justify-center bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md rounded-lg text-on-surface dark:text-inverse-on-surface hover:bg-white dark:hover:bg-inverse-surface transition-colors">
           <span aria-hidden="true" class="material-symbols-outlined text-[20px]">layers</span>
