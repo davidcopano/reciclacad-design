@@ -253,7 +253,7 @@
       </div>
       <!-- Mobile Search Overlay -->
       <div class="md:hidden absolute top-4 left-4 right-16 z-20">
-        <div class="bg-white/90 backdrop-blur-xl rounded-full flex items-center gap-2 px-4 py-2.5 shadow-sm">
+        <div class="bg-white/90 dark:bg-inverse-surface/90 dark:text-inverse-on-surface backdrop-blur-xl rounded-full flex items-center gap-2 px-4 py-2.5 shadow-sm">
           <span class="material-symbols-outlined text-outline text-[20px]">search</span>
           <input aria-label="Buscar punto de reciclaje" class="bg-transparent border-none outline-none text-sm flex-1 text-on-surface" placeholder="Buscar punto..." type="text" />
         </div>
@@ -303,22 +303,22 @@
       </button>
       <!-- Map Controls (Minimalist) -->
       <div class="absolute top-4 right-4 flex flex-col gap-2">
-        <div class="bg-white/90 backdrop-blur-md p-1 rounded-lg flex flex-col items-center">
+        <div class="bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md p-1 rounded-lg flex flex-col items-center">
           <button aria-label="Ampliar mapa" class="p-2 hover:bg-surface-container rounded-md transition-colors"><span
               aria-hidden="true" class="material-symbols-outlined text-[20px] text-on-surface">add</span></button>
           <div class="h-[1px] w-4 bg-surface-container-high"></div>
           <button aria-label="Alejar mapa" class="p-2 hover:bg-surface-container rounded-md transition-colors"><span
               aria-hidden="true" class="material-symbols-outlined text-[20px] text-on-surface">remove</span></button>
         </div>
-        <button aria-label="Ver capas del mapa" class="bg-white/90 backdrop-blur-md p-2 rounded-lg text-on-surface hover:bg-white transition-colors">
+        <button aria-label="Ver capas del mapa" class="bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md p-2 rounded-lg text-on-surface dark:text-inverse-on-surface hover:bg-white dark:hover:bg-inverse-surface transition-colors">
           <span aria-hidden="true" class="material-symbols-outlined text-[20px]">layers</span>
         </button>
       </div>
     </main>
   </div>
   <!-- BottomNavBar (Mobile Only) -->
-  <nav aria-label="Categorías de reciclaje" class="md:hidden fixed bottom-0 left-0 w-full h-[72px] bg-white flex items-center justify-around px-2 z-50">
-    <button class="flex flex-col items-center gap-1 text-primary min-w-[44px] min-h-[44px] justify-center">
+  <nav aria-label="Categorías de reciclaje" class="md:hidden fixed bottom-0 left-0 w-full h-[72px] bg-white dark:bg-inverse-surface dark:border-t dark:border-outline-variant/15 flex items-center justify-around px-2 z-50">
+    <button class="flex flex-col items-center gap-1 text-primary dark:text-primary-container min-w-[44px] min-h-[44px] justify-center">
       <div class="bg-primary-container/20 px-4 py-1 rounded-full">
         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">recycling</span>
       </div>

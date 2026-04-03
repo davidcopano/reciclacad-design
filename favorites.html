@@ -112,7 +112,7 @@
   </style>
 </head>
 
-<body class="bg-background text-on-surface antialiased">
+<body class="bg-background text-on-background antialiased">
   <!-- TopNavBar -->
   <header class="fixed top-0 left-0 w-full h-[56px] z-50 bg-neutral-header flex items-center px-4">
     <div
@@ -262,7 +262,7 @@
       </button>
       <!-- Floating Card Detail (Asymmetric Layout) -->
       <div
-        class="absolute bottom-[84px] left-3 right-3 md:bottom-10 md:right-10 md:left-auto md:w-80 z-30 bg-white/90 backdrop-blur-xl rounded-2xl p-6 border border-white/30">
+        class="absolute bottom-[84px] left-3 right-3 md:bottom-10 md:right-10 md:left-auto md:w-80 z-30 bg-white/90 dark:bg-inverse-surface/90 dark:text-inverse-on-surface backdrop-blur-xl rounded-2xl p-6 border border-white/30 dark:border-white/10">
         <div class="flex justify-between items-start mb-4">
           <div>
             <span
@@ -283,7 +283,7 @@
             <span class="text-xs font-bold text-primary">75%</span>
           </div>
           <button
-            class="w-full bg-on-background text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2">
+            class="w-full bg-primary text-on-primary py-3 rounded-xl font-bold flex items-center justify-center gap-2">
             <span class="material-symbols-outlined text-base">directions</span>
             Cómo llegar
           </button>
@@ -292,7 +292,7 @@
     </main>
   </div>
   <!-- BottomNavBar (Mobile Only) -->
-  <nav aria-label="Categorías de reciclaje" class="md:hidden fixed bottom-0 left-0 w-full h-[72px] bg-white flex items-center justify-around px-2 z-50">
+  <nav aria-label="Categorías de reciclaje" class="md:hidden fixed bottom-0 left-0 w-full h-[72px] bg-white dark:bg-inverse-surface dark:border-t dark:border-outline-variant/15 flex items-center justify-around px-2 z-50">
     <button class="flex flex-col items-center gap-1 text-outline min-w-[44px] min-h-[44px] justify-center">
       <span class="material-symbols-outlined">recycling</span>
       <span class="text-[10px] font-bold uppercase tracking-tighter">Vidrio</span>
