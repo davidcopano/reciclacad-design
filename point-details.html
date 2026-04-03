@@ -94,10 +94,18 @@
     body {
       font-family: 'Be Vietnam Pro', sans-serif;
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 
-<body class="bg-background text-on-background overflow-hidden">
+<body class="bg-background text-on-background">
   <!-- TopNavBar -->
   <header class="fixed top-0 left-0 w-full h-[56px] z-50 bg-neutral-header flex items-center px-4">
     <div
@@ -113,7 +121,7 @@
   <!-- Main Viewport Wrapper -->
   <div class="flex h-screen pt-[56px]">
     <!-- SideNavBar -->
-    <aside class="hidden md:flex flex-col p-6 gap-6 w-[280px] bg-white h-full z-40 border-r border-outline-variant/15">
+    <aside class="hidden md:flex flex-col p-6 gap-6 w-[280px] bg-white dark:bg-inverse-surface h-full z-40 border-r border-outline-variant/15">
       <div class="space-y-1">
         <h2 class="font-headline text-lg font-bold text-on-surface">Encuentra tu punto</h2>
         <p class="font-ui text-sm leading-relaxed text-secondary">Cádiz Sostenible</p>
@@ -151,7 +159,7 @@
       </button>
     </aside>
     <!-- Content Canvas (Map Area) -->
-    <main class="flex-1 relative bg-surface-container-low">
+    <main class="flex-1 relative bg-surface-container-low overflow-hidden">
       <!-- Map Background Image -->
       <div class="absolute inset-0 z-0">
         <img alt="Plano urbano de Cádiz con calles y línea de costa en tonos grises suaves"
@@ -181,8 +189,8 @@
       <div
         class="absolute bottom-[84px] left-3 right-3 md:bottom-8 md:right-8 md:left-auto md:w-[280px] z-30 bg-white/90 backdrop-blur-xl rounded-2xl p-4 flex flex-col gap-3">
         <div class="flex items-start justify-between">
-          <h3 class="font-headline font-medium text-[14px] leading-tight text-on-surface">Punto de Reciclaje - Plaza de
-            las Flores</h3>
+          <h1 class="font-headline font-medium text-[14px] leading-tight text-on-surface">Punto de Reciclaje - Plaza de
+            las Flores</h1>
           <button aria-label="Añadir a favoritos" class="text-tertiary hover:scale-110 transition-transform">
             <span aria-hidden="true" class="material-symbols-outlined text-[18px]" data-icon="favorite">favorite</span>
           </button>

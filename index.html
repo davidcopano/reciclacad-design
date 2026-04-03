@@ -96,10 +96,18 @@
     body {
       font-family: 'Be Vietnam Pro', sans-serif;
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 
-<body class="bg-background text-on-background overflow-hidden">
+<body class="bg-background text-on-background">
   <!-- TopNavBar -->
   <header class="fixed top-0 left-0 w-full h-[56px] z-50 bg-neutral-header flex items-center px-4">
     <div
