@@ -44,7 +44,7 @@ ReciclaCAD helps citizens of Cádiz find the nearest recycling point. This repos
 No build step required. Clone the repo and open any HTML file directly in your browser:
 
 ```bash
-git clone https://github.com/<owner>/reciclacad-design.git
+git clone https://github.com/davidcopano/reciclacad-design.git
 cd reciclacad-design
 ```
 
