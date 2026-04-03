@@ -3,11 +3,11 @@
 > UI prototype for ReciclaCAD, a recycling point finder for the city of Cádiz.
 
 [![HTML5](https://img.shields.io/badge/HTML5-static-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/docs/Web/HTML)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v3-38bdf8?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![Material Symbols](https://img.shields.io/badge/Material_Symbols-Outlined-4285F4?style=flat-square&logo=google&logoColor=white)](https://fonts.google.com/icons)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE.md)
 
-ReciclaCAD helps citizens of Cádiz find the nearest recycling point. This repository contains the full visual design as static HTML, built with Tailwind CSS v3, following the "The Urban Cartographer" design system — a blend of architectural precision and the airy character of Andalusia's coastline.
+ReciclaCAD helps citizens of Cádiz find the nearest recycling point. This repository contains the full visual design as static HTML, built with Tailwind CSS v4, following the "The Urban Cartographer" design system — a blend of architectural precision and the airy character of Andalusia's coastline.
 
 ## Screens
 
@@ -31,7 +31,7 @@ ReciclaCAD helps citizens of Cádiz find the nearest recycling point. This repos
 | Technology | Role |
 |------------|------|
 | HTML5 | Semantic screen structure |
-| [Tailwind CSS v3](https://tailwindcss.com) (CDN) | Utility classes and design tokens |
+| [Tailwind CSS v4](https://tailwindcss.com) (CDN) | Utility classes and design tokens |
 | [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) | Display & headline typeface |
 | [Be Vietnam Pro](https://fonts.google.com/specimen/Be+Vietnam+Pro) | Body & label typeface |
 | [DM Sans](https://fonts.google.com/specimen/DM+Sans) | UI component typeface |
@@ -102,6 +102,6 @@ reciclacad-design/
 ## Resources
 
 - [DESIGN.md](DESIGN.md) — Colour system, typography, components, and design dos & don'ts
-- [Tailwind CSS v3 Docs](https://v3.tailwindcss.com) — Documentation for the version used
+- [Tailwind CSS v4 Docs](https://tailwindcss.com) — Documentation for the version used
 - [Material You (M3)](https://m3.material.io) — Reference for the colour system and component patterns
 - [Material Symbols](https://fonts.google.com/icons) — Icon library reference
