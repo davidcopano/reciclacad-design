@@ -67,6 +67,66 @@
     ui.input.setAttribute('aria-expanded', visible ? 'true' : 'false');
   }
 
+  function isResultsStateActive(ui) {
+    var resultsState = ui.panel.querySelector('[data-state="results"]');
+    return resultsState && resultsState.dataset.active === 'true';
+  }
+
+  function getResultButtons(ui) {
+    var list = ui.panel.querySelector('[data-list]');
+    if (!list) {
+      return [];
+    }
+
+    return Array.prototype.slice.call(list.querySelectorAll('.search-result-item'));
+  }
+
+  function focusResult(ui, index) {
+    var buttons = getResultButtons(ui);
+    if (!buttons.length) {
+      return;
+    }
+
+    var boundedIndex = index;
+    if (boundedIndex < 0) {
+      boundedIndex = buttons.length - 1;
+    }
+    if (boundedIndex >= buttons.length) {
+      boundedIndex = 0;
+    }
+
+    buttons[boundedIndex].focus();
+  }
+
+  function handleResultKeydown(ui, event, button) {
+    var buttons = getResultButtons(ui);
+    var currentIndex = buttons.indexOf(button);
+
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      focusResult(ui, currentIndex + 1);
+      return;
+    }
+
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      focusResult(ui, currentIndex - 1);
+      return;
+    }
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      setVisible(ui, false);
+      ui.input.focus();
+      return;
+    }
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      button.click();
+    }
+  }
+
   function renderResults(ui, items) {
     var list = ui.panel.querySelector('[data-list]');
     var count = ui.panel.querySelector('[data-count]');
@@ -100,6 +160,10 @@
           window.reciclacadToast.show('success', 'Vista previa: seleccionaste ' + item.address + '.');
         }
         setVisible(ui, false);
+      });
+
+      button.addEventListener('keydown', function (event) {
+        handleResultKeydown(ui, event, button);
       });
 
       list.appendChild(button);
@@ -179,6 +243,31 @@
     input.addEventListener('keydown', function (event) {
       if (event.key === 'Escape') {
         setVisible(ui, false);
+        return;
+      }
+
+      if (!isResultsStateActive(ui) || ui.panel.dataset.visible !== 'true') {
+        return;
+      }
+
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        focusResult(ui, 0);
+        return;
+      }
+
+      if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        focusResult(ui, -1);
+        return;
+      }
+
+      if (event.key === 'Enter') {
+        var buttons = getResultButtons(ui);
+        if (buttons.length) {
+          event.preventDefault();
+          buttons[0].click();
+        }
       }
     });
 
