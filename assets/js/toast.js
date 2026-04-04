@@ -118,6 +118,10 @@
 
   document.querySelectorAll('input[aria-label*="Buscar"]').forEach(function (input) {
     input.addEventListener('keydown', function (event) {
+      if (input.hasAttribute('data-search-input')) {
+        return;
+      }
+
       if (event.key !== 'Enter') {
         return;
       }

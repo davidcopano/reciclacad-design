@@ -1,0 +1,125 @@
+.search-results-panel {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  z-index: 35;
+  display: none;
+  max-height: 18rem;
+  overflow-y: auto;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 12px 32px rgba(25, 28, 29, 0.06);
+}
+
+.dark .search-results-panel {
+  background: rgba(46, 49, 50, 0.9);
+  color: #f0f1f2;
+}
+
+.search-results-panel[data-visible="true"] {
+  display: block;
+}
+
+.search-results-state {
+  display: none;
+}
+
+.search-results-state[data-active="true"] {
+  display: block;
+}
+
+.search-results-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6c7b6f;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.dark .search-results-header {
+  background: rgba(46, 49, 50, 0.88);
+}
+
+.search-results-list {
+  padding: 0.4rem;
+}
+
+.search-result-item {
+  width: 100%;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  padding: 0.65rem;
+  text-align: left;
+}
+
+.search-result-item:hover,
+.search-result-item:focus-visible {
+  background: rgba(243, 244, 245, 0.95);
+}
+
+.dark .search-result-item:hover,
+.dark .search-result-item:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.search-empty,
+.search-error {
+  padding: 0.9rem;
+  text-align: center;
+  font-size: 0.78rem;
+}
+
+.search-error {
+  margin: 0.4rem;
+  border-radius: 0.5rem;
+  color: #93000a;
+  background: rgba(255, 218, 214, 0.65);
+}
+
+.search-skeleton-wrap {
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.search-skeleton {
+  position: relative;
+  height: 2.8rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: rgba(187, 202, 188, 0.18);
+}
+
+.search-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(187, 202, 188, 0) 0%,
+    rgba(187, 202, 188, 0.32) 50%,
+    rgba(187, 202, 188, 0) 100%
+  );
+  animation: search-skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes search-skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .search-skeleton::after {
+    content: none;
+  }
+}

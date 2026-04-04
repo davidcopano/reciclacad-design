@@ -14,6 +14,7 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
     rel="stylesheet" />
   <link href="assets/css/toast.css" rel="stylesheet" />
+  <link href="assets/css/search-results.css" rel="stylesheet" />
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -151,11 +152,12 @@
         <p class="text-outline">Cádiz Sostenible</p>
       </div>
       <!-- Search Bar -->
-      <div class="relative">
+      <div class="relative" data-search-root data-search-context="desktop">
         <span
           class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">search</span>
         <input aria-label="Buscar por dirección"
           class="w-full bg-surface-container-low border-none rounded-xl pl-10 py-2 text-sm focus:ring-2 focus:ring-primary/20 outline-none"
+          data-search-input aria-expanded="false" autocomplete="off"
           placeholder="Buscar por dirección..." type="text" />
       </div>
       <!-- Filter Chips (Thematic) -->
@@ -250,12 +252,13 @@
         alt="" decoding="async" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover opacity-30"
         aria-hidden="true" />
       <!-- Mobile Search Overlay -->
-      <div class="md:hidden absolute top-4 left-4 right-16 z-20">
+      <div class="md:hidden absolute top-4 left-4 right-16 z-20" data-search-root data-search-context="mobile">
         <div
           class="bg-white/90 dark:bg-inverse-surface/90 dark:text-inverse-on-surface backdrop-blur-xl rounded-full flex items-center gap-2 px-4 py-2.5 shadow-sm">
           <span class="material-symbols-outlined text-outline text-[20px]">search</span>
           <input aria-label="Buscar punto de reciclaje"
-            class="bg-transparent border-none outline-none text-sm flex-1 text-on-surface" placeholder="Buscar punto..."
+            class="bg-transparent border-none outline-none text-sm flex-1 text-on-surface" data-search-input
+            aria-expanded="false" autocomplete="off" placeholder="Buscar punto..."
             type="text" />
         </div>
       </div>
@@ -397,6 +400,7 @@
     </button>
   </nav>
 
+  <script src="assets/js/search-results.js"></script>
   <script src="assets/js/toast.js"></script>
 </body>
 
