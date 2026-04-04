@@ -7,18 +7,19 @@
 [![Material Symbols](https://img.shields.io/badge/Material_Symbols-Outlined-4285F4?style=flat-square&logo=google&logoColor=white)](https://fonts.google.com/icons)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE.md)
 
+ReciclaCAD helps citizens of Cádiz find the nearest recycling point. This repository contains the full visual design as static HTML, built with Tailwind CSS v4, following the "The Urban Cartographer" design system — a blend of architectural precision and the airy character of Andalusia's coastline.
+
 ## Preview
 
-![Interfaz de usuario — ReciclaCAD](assets/imgs/ui.png)
+### Desktop
 
-ReciclaCAD helps citizens of Cádiz find the nearest recycling point. This repository contains the full visual design as static HTML, built with Tailwind CSS v4, following the "The Urban Cartographer" design system — a blend of architectural precision and the airy character of Andalusia's coastline.
+![ReciclaCAD - Desktop](assets/imgs/ui-desktop.png)
 
 ## Screens
 
 | Screen | File | Description |
 |--------|------|-------------|
-| Main map | [index.html](index.html) | Map view with search, category filters, and nearest points list — **primary reference for the webapp implementation** |
-| Point details | [point-details.html](point-details.html) | Full detail sheet for a recycling point |
+| Main map | [index.html](index.html) | Map view with search, category filters, point details, and nearest points list — **primary reference for the webapp implementation** |
 | Favourites | [favorites.html](favorites.html) | User-saved recycling points |
 
 > [!IMPORTANT]
@@ -55,7 +56,7 @@ git clone https://github.com/davidcopano/reciclacad-design.git
 cd reciclacad-design
 ```
 
-Then open `index.html`, `point-details.html`, or `favorites.html` in your browser. All assets load from CDN.
+Then open `index.html` or `favorites.html` in your browser. All assets load from CDN.
 
 > [!TIP]
 > Use the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) VS Code extension for instant hot-reload while exploring or editing the design files.
@@ -101,7 +102,6 @@ Solid `1px` borders are prohibited. Depth is achieved through tonal surface shif
 ```
 reciclacad-design/
 ├── index.html          # Main view — map, search, and points list
-├── point-details.html  # Recycling point detail sheet
 ├── favorites.html      # User's saved favourite points
 └── DESIGN.md           # Full design system documentation
 ```
