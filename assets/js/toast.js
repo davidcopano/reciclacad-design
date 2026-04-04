@@ -1,8 +1,28 @@
 (function () {
-  const toastStack = document.getElementById('toast-stack');
-  if (!toastStack) {
-    return;
+  function ensureToastStack() {
+    const existingStack = document.getElementById('toast-stack');
+    if (existingStack) {
+      return existingStack;
+    }
+
+    const region = document.createElement('div');
+    region.id = 'toast-region';
+    region.className = 'toast-region';
+    region.setAttribute('role', 'region');
+    region.setAttribute('aria-label', 'Notificaciones');
+    region.setAttribute('aria-live', 'polite');
+    region.setAttribute('aria-atomic', 'true');
+
+    const stack = document.createElement('div');
+    stack.id = 'toast-stack';
+    stack.className = 'toast-stack';
+
+    region.appendChild(stack);
+    document.body.appendChild(region);
+    return stack;
   }
+
+  const toastStack = ensureToastStack();
 
   const iconByType = {
     success: 'check_circle',
