@@ -243,10 +243,11 @@
             class="text-[12px] text-outline mb-4 px-2 uppercase tracking-wider font-medium sticky top-0 z-10 bg-white dark:bg-inverse-surface">
             342
             puntos encontrados</div>
-          <div class="space-y-1">
+          <div class="space-y-1" data-points-list role="listbox" aria-label="Puntos de reciclaje">
             <!-- Point Item 1 -->
             <button aria-label="Av. Ana de Viya, 12 — a 250 metros. Ver detalle"
-              class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left">
+              class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left point-list-item"
+              data-point-item data-point-id="p1" data-selected="true" aria-selected="true" role="option">
               <div class="flex items-center gap-3">
                 <div aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-primary-container flex-shrink-0"></div>
                 <div>
@@ -259,7 +260,8 @@
             </button>
             <!-- Point Item 2 -->
             <button aria-label="Plaza de las Flores, 3 — a 400 metros. Ver detalle"
-              class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left">
+              class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left point-list-item"
+              data-point-item data-point-id="p2" data-selected="false" aria-selected="false" role="option">
               <div class="flex items-center gap-3">
                 <div aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-secondary-container flex-shrink-0"></div>
                 <div>
@@ -272,7 +274,8 @@
             </button>
             <!-- Point Item 3 -->
             <button aria-label="Calle Columela, 18 — a 600 metros. Ver detalle"
-              class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left">
+              class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left point-list-item"
+              data-point-item data-point-id="p3" data-selected="false" aria-selected="false" role="option">
               <div class="flex items-center gap-3">
                 <div aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-tertiary-container flex-shrink-0"></div>
                 <div>
@@ -285,7 +288,8 @@
             </button>
             <!-- Point Item 4 -->
             <button aria-label="Paseo Marítimo, 45 — a 850 metros. Ver detalle"
-              class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left">
+              class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left point-list-item"
+              data-point-item data-point-id="p4" data-selected="false" aria-selected="false" role="option">
               <div class="flex items-center gap-3">
                 <div aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-primary-container flex-shrink-0"></div>
                 <div>
@@ -324,48 +328,60 @@
         <!-- Glass Point (seleccionado — corresponde a Av. Ana de Viya, 12) -->
         <div class="absolute top-[20%] left-[30%] -translate-x-1/2 -translate-y-1/2">
           <button aria-label="Punto de reciclaje de vidrio — Av. Ana de Viya, 12 (seleccionado)"
-            class="w-11 h-11 flex items-center justify-center">
-            <div class="w-6 h-6 bg-primary rounded-full border-4 border-white shadow-md ring-4 ring-primary/25">
+            class="w-11 h-11 flex items-center justify-center" data-point-marker data-point-id="p1" data-selected="true"
+            aria-pressed="true">
+            <div class="map-point-dot w-5 h-5 bg-primary rounded-full border-2 border-white shadow-sm ring-4 ring-primary/25"
+              data-point-marker-dot>
             </div>
           </button>
         </div>
         <!-- Paper Point -->
         <div class="absolute top-[45%] left-[55%] -translate-x-1/2 -translate-y-1/2">
-          <button aria-label="Punto de reciclaje de papel" class="w-11 h-11 flex items-center justify-center">
+          <button aria-label="Punto de reciclaje de papel" class="w-11 h-11 flex items-center justify-center"
+            data-point-marker data-point-id="p2" data-selected="false" aria-pressed="false">
             <div
-              class="w-5 h-5 bg-secondary-container rounded-full border-2 border-white shadow-sm ring-4 ring-secondary-container/20">
+              class="map-point-dot w-5 h-5 bg-secondary-container rounded-full border-2 border-white shadow-sm ring-4 ring-secondary-container/20"
+              data-point-marker-dot>
             </div>
           </button>
         </div>
         <!-- Container Point -->
         <div class="absolute top-[30%] left-[70%] -translate-x-1/2 -translate-y-1/2">
-          <button aria-label="Punto de reciclaje de envases" class="w-11 h-11 flex items-center justify-center">
+          <button aria-label="Punto de reciclaje de envases" class="w-11 h-11 flex items-center justify-center"
+            data-point-marker data-point-id="p3" data-selected="false" aria-pressed="false">
             <div
-              class="w-5 h-5 bg-tertiary-container rounded-full border-2 border-white shadow-sm ring-4 ring-tertiary-container/20">
+              class="map-point-dot w-5 h-5 bg-tertiary-container rounded-full border-2 border-white shadow-sm ring-4 ring-tertiary-container/20"
+              data-point-marker-dot>
             </div>
           </button>
         </div>
         <!-- Glass Point 2 -->
         <div class="absolute top-[65%] left-[40%] -translate-x-1/2 -translate-y-1/2">
-          <button aria-label="Punto de reciclaje de vidrio" class="w-11 h-11 flex items-center justify-center">
+          <button aria-label="Punto de reciclaje de vidrio" class="w-11 h-11 flex items-center justify-center"
+            data-point-marker data-point-id="p4" data-selected="false" aria-pressed="false">
             <div
-              class="w-5 h-5 bg-primary-container rounded-full border-2 border-white shadow-sm ring-4 ring-primary-container/20">
+              class="map-point-dot w-5 h-5 bg-primary-container rounded-full border-2 border-white shadow-sm ring-4 ring-primary-container/20"
+              data-point-marker-dot>
             </div>
           </button>
         </div>
         <!-- Paper Point 2 -->
         <div class="absolute top-[80%] left-[25%] -translate-x-1/2 -translate-y-1/2">
-          <button aria-label="Punto de reciclaje de papel" class="w-11 h-11 flex items-center justify-center">
+          <button aria-label="Punto de reciclaje de papel" class="w-11 h-11 flex items-center justify-center"
+            data-point-marker data-point-id="p5" data-selected="false" aria-pressed="false">
             <div
-              class="w-5 h-5 bg-secondary-container rounded-full border-2 border-white shadow-sm ring-4 ring-secondary-container/20">
+              class="map-point-dot w-5 h-5 bg-secondary-container rounded-full border-2 border-white shadow-sm ring-4 ring-secondary-container/20"
+              data-point-marker-dot>
             </div>
           </button>
         </div>
         <!-- Container Point 2 -->
         <div class="absolute top-[75%] left-[65%] -translate-x-1/2 -translate-y-1/2">
-          <button aria-label="Punto de reciclaje de envases" class="w-11 h-11 flex items-center justify-center">
+          <button aria-label="Punto de reciclaje de envases" class="w-11 h-11 flex items-center justify-center"
+            data-point-marker data-point-id="p6" data-selected="false" aria-pressed="false">
             <div
-              class="w-5 h-5 bg-tertiary-container rounded-full border-2 border-white shadow-sm ring-4 ring-tertiary-container/20">
+              class="map-point-dot w-5 h-5 bg-tertiary-container rounded-full border-2 border-white shadow-sm ring-4 ring-tertiary-container/20"
+              data-point-marker-dot>
             </div>
           </button>
         </div>
@@ -396,7 +412,8 @@
         <div
           class="absolute bottom-[84px] left-3 right-3 md:bottom-8 md:right-8 md:left-auto md:w-[280px] z-30 bg-white/90 dark:bg-inverse-surface/90 dark:text-inverse-on-surface backdrop-blur-xl rounded-2xl p-4 flex flex-col gap-3">
           <div class="flex items-start justify-between">
-            <h2 class="font-headline font-bold text-base leading-tight text-on-surface">Av. Ana de Viya, 12</h2>
+            <h2 class="font-headline font-bold text-base leading-tight text-on-surface" data-point-detail-address>Av. Ana de Viya,
+              12</h2>
             <div class="flex items-center gap-1 flex-shrink-0 ml-2">
               <button aria-label="Guardar en favoritos"
                 class="text-tertiary hover:scale-110 transition-transform btn-favorite w-8 h-8 flex items-center justify-center rounded-full">
@@ -411,7 +428,8 @@
           <!-- Chips Row -->
           <div class="flex flex-wrap gap-1.5">
             <div
-              class="px-2.5 py-1 bg-primary-container/20 text-on-primary-container rounded-full text-[10px] font-bold uppercase tracking-wider">
+              class="px-2.5 py-1 bg-primary-container/20 text-on-primary-container rounded-full text-[10px] font-bold uppercase tracking-wider"
+              data-point-detail-type>
               Vidrio</div>
             <div
               class="px-2.5 py-1 bg-surface-container-highest text-on-surface-variant rounded-full text-[10px] font-bold uppercase tracking-wider">
@@ -419,7 +437,7 @@
           </div>
           <div class="flex items-center gap-1.5">
             <span aria-hidden="true" class="material-symbols-outlined text-[16px] text-outline">near_me</span>
-            <span class="font-ui text-[12px] text-outline">A 250 metros de ti</span>
+            <span class="font-ui text-[12px] text-outline" data-point-detail-distance>A 250 metros de ti</span>
           </div>
           <button
             data-toast-error="No se pudo abrir la ruta ahora mismo. Vuelve a intentarlo en unos minutos."

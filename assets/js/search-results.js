@@ -1,17 +1,190 @@
 (function () {
   var mockPoints = [
-    { id: 'p1', address: 'Av. Ana de Viya, 12', distance: 250, typeClass: 'bg-primary-container' },
-    { id: 'p2', address: 'Plaza de las Flores, 3', distance: 400, typeClass: 'bg-secondary-container' },
-    { id: 'p3', address: 'Calle Columela, 18', distance: 600, typeClass: 'bg-tertiary-container' },
-    { id: 'p4', address: 'Paseo Maritimo, 45', distance: 850, typeClass: 'bg-primary-container' },
-    { id: 'p5', address: 'Calle Sagasta, 9', distance: 900, typeClass: 'bg-secondary-container' },
-    { id: 'p6', address: 'Av. Portugal, 33', distance: 1100, typeClass: 'bg-tertiary-container' }
+    {
+      id: 'p1',
+      address: 'Av. Ana de Viya, 12',
+      distance: 250,
+      typeClass: 'bg-primary-container',
+      typeLabel: 'Vidrio',
+      detailTypeToneClass: 'bg-primary-container/20 text-on-primary-container'
+    },
+    {
+      id: 'p2',
+      address: 'Plaza de las Flores, 3',
+      distance: 400,
+      typeClass: 'bg-secondary-container',
+      typeLabel: 'Papel',
+      detailTypeToneClass: 'bg-secondary-container/20 text-on-secondary-container'
+    },
+    {
+      id: 'p3',
+      address: 'Calle Columela, 18',
+      distance: 600,
+      typeClass: 'bg-tertiary-container',
+      typeLabel: 'Envases',
+      detailTypeToneClass: 'bg-tertiary-container/20 text-on-tertiary-container'
+    },
+    {
+      id: 'p4',
+      address: 'Paseo Marítimo, 45',
+      distance: 850,
+      typeClass: 'bg-primary-container',
+      typeLabel: 'Vidrio',
+      detailTypeToneClass: 'bg-primary-container/20 text-on-primary-container'
+    },
+    {
+      id: 'p5',
+      address: 'Calle Sagasta, 9',
+      distance: 900,
+      typeClass: 'bg-secondary-container',
+      typeLabel: 'Papel',
+      detailTypeToneClass: 'bg-secondary-container/20 text-on-secondary-container'
+    },
+    {
+      id: 'p6',
+      address: 'Av. Portugal, 33',
+      distance: 1100,
+      typeClass: 'bg-tertiary-container',
+      typeLabel: 'Envases',
+      detailTypeToneClass: 'bg-tertiary-container/20 text-on-tertiary-container'
+    }
   ];
 
   var states = ['typing', 'results', 'empty', 'error'];
   var roots = [];
   var inputs = [];
   var uiByInput = new WeakMap();
+  var selectedPointId = null;
+
+  var detailAddressNode = null;
+  var detailDistanceNode = null;
+  var detailTypeNode = null;
+  var listButtons = [];
+  var markerButtons = [];
+
+  function normalizeText(value) {
+    return String(value || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function getPointById(pointId) {
+    return mockPoints.find(function (point) {
+      return point.id === pointId;
+    }) || null;
+  }
+
+  function syncPointCollections() {
+    listButtons = Array.prototype.slice.call(document.querySelectorAll('[data-point-item][data-point-id]'));
+    markerButtons = Array.prototype.slice.call(document.querySelectorAll('[data-point-marker][data-point-id]'));
+  }
+
+  function updateDetailCard(point) {
+    if (!point) {
+      return;
+    }
+
+    if (detailAddressNode) {
+      detailAddressNode.textContent = point.address;
+    }
+
+    if (detailDistanceNode) {
+      detailDistanceNode.textContent = 'A ' + point.distance + ' metros de ti';
+    }
+
+    if (detailTypeNode) {
+      detailTypeNode.textContent = point.typeLabel;
+      detailTypeNode.className =
+        'px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ' + point.detailTypeToneClass;
+    }
+  }
+
+  function applyPointSelection(pointId, options) {
+    var opts = options || {};
+    var source = opts.source || 'unknown';
+    var point = getPointById(pointId);
+
+    if (!point) {
+      return;
+    }
+
+    selectedPointId = pointId;
+
+    listButtons.forEach(function (button) {
+      var isSelected = button.dataset.pointId === pointId;
+      button.dataset.selected = isSelected ? 'true' : 'false';
+      button.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+
+      if (isSelected && source === 'map') {
+        button.scrollIntoView({
+          block: 'nearest',
+          inline: 'nearest',
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+        });
+      }
+    });
+
+    markerButtons.forEach(function (button) {
+      var isSelected = button.dataset.pointId === pointId;
+      button.dataset.selected = isSelected ? 'true' : 'false';
+      button.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+    });
+
+    updateDetailCard(point);
+  }
+
+  function selectPoint(pointId, options) {
+    if (!pointId) {
+      return;
+    }
+
+    applyPointSelection(pointId, options);
+  }
+
+  function getSelectedPointId() {
+    return selectedPointId;
+  }
+
+  function initPointSelection() {
+    syncPointCollections();
+
+    if (!listButtons.length && !markerButtons.length) {
+      return;
+    }
+
+    detailAddressNode = document.querySelector('[data-point-detail-address]');
+    detailDistanceNode = document.querySelector('[data-point-detail-distance]');
+    detailTypeNode = document.querySelector('[data-point-detail-type]');
+
+    document.addEventListener('click', function (event) {
+      var listButton = event.target.closest('[data-point-item][data-point-id]');
+      if (listButton) {
+        selectPoint(listButton.dataset.pointId, { source: 'list' });
+        return;
+      }
+
+      var markerButton = event.target.closest('[data-point-marker][data-point-id]');
+      if (markerButton) {
+        selectPoint(markerButton.dataset.pointId, { source: 'map' });
+      }
+    });
+
+    var initialNode =
+      document.querySelector('[data-point-item][data-selected="true"]') ||
+      document.querySelector('[data-point-marker][data-selected="true"]') ||
+      listButtons[0] ||
+      markerButtons[0];
+
+    if (initialNode && initialNode.dataset.pointId) {
+      applyPointSelection(initialNode.dataset.pointId, { source: 'init' });
+    }
+
+    window.reciclacadPoints = {
+      select: selectPoint,
+      getSelectedPointId: getSelectedPointId
+    };
+  }
 
   function buildPanel() {
     var panel = document.createElement('section');
@@ -143,6 +316,7 @@
       button.type = 'button';
       button.className = 'search-result-item';
       button.setAttribute('aria-label', item.address + ' a ' + item.distance + ' metros');
+      button.dataset.pointId = item.id;
       button.innerHTML =
         '<div class="flex items-center justify-between gap-3">' +
         '  <div class="flex items-center gap-3 min-w-0">' +
@@ -156,8 +330,9 @@
         '</div>';
 
       button.addEventListener('click', function () {
+        selectPoint(item.id, { source: 'search' });
         if (window.reciclacadToast && typeof window.reciclacadToast.show === 'function') {
-          window.reciclacadToast.show('success', 'Vista previa: seleccionaste ' + item.address + '.');
+          window.reciclacadToast.show('success', 'Mostrando punto: ' + item.address + '.');
         }
         setVisible(ui, false);
       });
@@ -188,8 +363,9 @@
       return;
     }
 
+    var normalizedQuery = normalizeText(query);
     var filtered = mockPoints.filter(function (point) {
-      return point.address.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+      return normalizeText(point.address).indexOf(normalizedQuery) !== -1;
     });
 
     setVisible(ui, true);
@@ -298,6 +474,8 @@
   });
 
   document.addEventListener('DOMContentLoaded', function () {
+    initPointSelection();
+
     var searchRoots = document.querySelectorAll('[data-search-root]');
     searchRoots.forEach(function (root, index) {
       initRoot(root, index + 1);

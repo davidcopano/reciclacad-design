@@ -65,9 +65,39 @@
   background: rgba(243, 244, 245, 0.95);
 }
 
+.point-list-item[data-selected="true"] {
+  background: rgba(46, 204, 125, 0.14);
+}
+
+.point-list-item[data-selected="true"] .material-symbols-outlined {
+  opacity: 1;
+  color: #835500;
+}
+
+.point-list-item[data-selected="true"]:hover {
+  background: rgba(46, 204, 125, 0.2);
+}
+
+[data-point-marker][data-selected="true"] .map-point-dot {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-width: 4px;
+  box-shadow: 0 12px 24px rgba(25, 28, 29, 0.16);
+}
+
+[data-point-marker][data-selected="false"] .map-point-dot {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-width: 2px;
+}
+
 .dark .search-result-item:hover,
 .dark .search-result-item:focus-visible {
   background: rgba(255, 255, 255, 0.08);
+}
+
+.dark .point-list-item[data-selected="true"] {
+  background: rgba(110, 253, 169, 0.18);
 }
 
 .search-empty,
