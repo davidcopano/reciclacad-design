@@ -322,7 +322,7 @@
         </a>
       </aside>
       <!-- Rail Navigation (Tablet: md to lg) -->
-      <nav aria-label="Categorías de reciclaje"
+      <nav aria-label="Filtros por categoría"
         class="hidden md:flex lg:hidden flex-col items-center fixed left-0 top-[56px] w-[80px] h-[calc(100vh-56px)] z-40 bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-xl py-3 gap-0.5 font-ui">
         <!-- Vidrio - Active -->
         <button aria-pressed="true" aria-label="Filtrar vidrio"
@@ -376,7 +376,7 @@
         <div class="lg:hidden absolute top-4 left-4 md:left-[92px] right-16 z-20" data-search-root data-search-context="mobile">
           <div
             class="bg-white/90 dark:bg-inverse-surface/90 dark:text-inverse-on-surface backdrop-blur-xl rounded-full flex items-center gap-2 px-4 py-2.5 shadow-sm">
-            <span class="material-symbols-outlined text-outline text-[20px]">search</span>
+            <span class="material-symbols-outlined text-outline dark:text-inverse-on-surface/60 text-[20px]">search</span>
             <input aria-label="Buscar punto de reciclaje"
               class="bg-transparent border-none outline-none text-sm flex-1 text-on-surface" data-search-input
               aria-expanded="false" autocomplete="off"
@@ -657,22 +657,23 @@
       var root = document.documentElement;
       var saved = localStorage.getItem('reciclacad-theme');
       if (saved === 'dark') { root.classList.add('dark'); }
+      else if (saved === 'light') { root.classList.remove('dark'); }
 
       document.addEventListener('DOMContentLoaded', function () {
         var btn = document.getElementById('dark-mode-toggle');
         var icon = document.getElementById('dark-mode-icon');
 
-        function syncIcon() {
+        function syncUI() {
           var isDark = root.classList.contains('dark');
           icon.textContent = isDark ? 'dark_mode' : 'light_mode';
           btn.setAttribute('aria-label', isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
         }
 
-        syncIcon();
+        syncUI();
         btn.addEventListener('click', function () {
           root.classList.toggle('dark');
           localStorage.setItem('reciclacad-theme', root.classList.contains('dark') ? 'dark' : 'light');
-          syncIcon();
+          syncUI();
         });
       });
     })();
