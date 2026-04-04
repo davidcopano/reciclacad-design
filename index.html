@@ -13,6 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
     rel="stylesheet" />
+  <link href="assets/css/toast.css" rel="stylesheet" />
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -120,113 +121,6 @@
       animation: favorite-pop 0.25s ease-out;
     }
 
-    .toast-region {
-      position: fixed;
-      top: 72px;
-      right: 16px;
-      z-index: 70;
-      pointer-events: none;
-    }
-
-    .toast-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      width: min(360px, calc(100vw - 32px));
-    }
-
-    .toast {
-      pointer-events: auto;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 8px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 12px 32px rgba(25, 28, 29, 0.06);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      line-height: 1.35;
-      animation: toast-in 220ms cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .toast--success {
-      background: rgba(46, 204, 125, 0.22);
-      color: #00512c;
-    }
-
-    .toast--warning {
-      background: rgba(242, 163, 32, 0.24);
-      color: #613e00;
-    }
-
-    .toast--error {
-      background: rgba(186, 26, 26, 0.16);
-      color: #93000a;
-    }
-
-    .dark .toast--success {
-      background: rgba(74, 224, 143, 0.24);
-      color: #00210f;
-    }
-
-    .dark .toast--warning {
-      background: rgba(255, 185, 85, 0.24);
-      color: #291800;
-    }
-
-    .dark .toast--error {
-      background: rgba(255, 180, 171, 0.24);
-      color: #ffffff;
-    }
-
-    .toast__message {
-      flex: 1;
-      margin: 0;
-    }
-
-    .toast__close {
-      width: 26px;
-      height: 26px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: none;
-      border-radius: 9999px;
-      background: transparent;
-      color: inherit;
-      opacity: 0.78;
-      cursor: pointer;
-    }
-
-    .toast__close:hover {
-      opacity: 1;
-      background: rgba(255, 255, 255, 0.18);
-    }
-
-    .toast--leaving {
-      animation: toast-out 180ms ease forwards;
-    }
-
-    @keyframes toast-in {
-      from {
-        opacity: 0;
-        transform: translateY(-8px) scale(0.98);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    @keyframes toast-out {
-      to {
-        opacity: 0;
-        transform: translateY(-8px) scale(0.98);
-      }
-    }
-
     .loading-shell {
       display: none;
     }
@@ -267,23 +161,6 @@
 
     @media (prefers-reduced-motion: reduce) {
 
-      .toast,
-      .toast--leaving {
-        animation: none !important;
-      }
-
-      .toast {
-        transform: none !important;
-      }
-
-      .toast__close {
-        transition: none !important;
-      }
-
-      .toast__close:hover {
-        background: transparent;
-      }
-
       *,
       ::before,
       ::after {
@@ -294,18 +171,6 @@
 
       .skeleton-block::after {
         content: none;
-      }
-    }
-
-    @media (max-width: 767px) {
-      .toast-region {
-        top: 72px;
-        left: 12px;
-        right: 12px;
-      }
-
-      .toast-stack {
-        width: 100%;
       }
     }
   </style>
@@ -710,125 +575,7 @@
     </nav>
   </div>
 
-  <script>
-    (function () {
-      const toastStack = document.getElementById('toast-stack');
-      if (!toastStack) {
-        return;
-      }
-
-      const iconByType = {
-        success: 'check_circle',
-        warning: 'warning',
-        error: 'error'
-      };
-
-      function dismissToast(toast, immediate) {
-        if (!toast || !toast.parentElement) {
-          return;
-        }
-
-        if (immediate) {
-          toast.remove();
-          return;
-        }
-
-        toast.classList.add('toast--leaving');
-        toast.addEventListener('animationend', function () {
-          toast.remove();
-        }, { once: true });
-      }
-
-      function showToast(type, message, duration) {
-        const tone = iconByType[type] ? type : 'success';
-        const toast = document.createElement('div');
-        toast.className = 'toast toast--' + tone;
-        toast.setAttribute('role', tone === 'error' ? 'alert' : 'status');
-
-        const icon = document.createElement('span');
-        icon.className = 'material-symbols-outlined text-[18px]';
-        icon.setAttribute('aria-hidden', 'true');
-        icon.textContent = iconByType[tone];
-
-        const text = document.createElement('p');
-        text.className = 'toast__message';
-        text.textContent = message;
-
-        const close = document.createElement('button');
-        close.type = 'button';
-        close.className = 'toast__close';
-        close.setAttribute('aria-label', 'Cerrar notificación');
-        close.innerHTML = '<span aria-hidden="true" class="material-symbols-outlined text-[18px]">close</span>';
-        close.addEventListener('click', function () {
-          dismissToast(toast, false);
-        });
-
-        toast.appendChild(icon);
-        toast.appendChild(text);
-        toast.appendChild(close);
-
-        const activeToasts = toastStack.querySelectorAll('.toast');
-        if (activeToasts.length >= 3) {
-          dismissToast(activeToasts[0], true);
-        }
-
-        toastStack.appendChild(toast);
-        window.setTimeout(function () {
-          dismissToast(toast, false);
-        }, typeof duration === 'number' ? duration : 4000);
-      }
-
-      function getFavoriteState(button) {
-        const icon = button.querySelector('.material-symbols-outlined');
-        return icon && icon.textContent.trim() === 'favorite';
-      }
-
-      function toggleFavorite(button) {
-        const icon = button.querySelector('.material-symbols-outlined');
-        const isFavorite = getFavoriteState(button);
-
-        if (icon) {
-          icon.textContent = isFavorite ? 'favorite_border' : 'favorite';
-        }
-
-        showToast('success', isFavorite ? 'Has quitado este punto de tus favoritos.' : 'Punto guardado en tus favoritos.');
-      }
-
-      document.querySelectorAll('.btn-favorite').forEach(function (button) {
-        button.addEventListener('click', function () {
-          toggleFavorite(button);
-        });
-      });
-
-      document.querySelectorAll('input[aria-label*="Buscar"]').forEach(function (input) {
-        input.addEventListener('keydown', function (event) {
-          if (event.key !== 'Enter') {
-            return;
-          }
-
-          const query = input.value.trim();
-          if (query.length < 2) {
-            showToast('warning', 'Escribe al menos 2 caracteres para buscar.');
-            return;
-          }
-
-          showToast('warning', 'No hemos encontrado puntos para "' + query + '".');
-        });
-      });
-
-      document.querySelectorAll('[data-toast-error]').forEach(function (button) {
-        button.addEventListener('click', function (event) {
-          event.preventDefault();
-          const message = button.getAttribute('data-toast-error') || 'Ha ocurrido un error al completar la acción.';
-          showToast('error', message, 4000);
-        });
-      });
-
-      window.reciclacadToast = {
-        show: showToast
-      };
-    })();
-  </script>
+  <script src="assets/js/toast.js"></script>
 </body>
 
 </html>
