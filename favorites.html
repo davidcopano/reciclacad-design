@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>ReciclaCAD — Mis favoritos · Cádiz Sostenible</title>
+  <title>ReciclaCAD - Favoritos</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;family=DM+Sans:wght@400;500;700&amp;display=swap"
@@ -89,8 +89,8 @@
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
 
-    .favorite-fill {
-      font-variation-settings: 'FILL' 1;
+    .ghost-border {
+      border: 1px solid rgba(187, 202, 188, 0.15);
     }
 
     body {
@@ -103,16 +103,28 @@
     }
 
     @keyframes favorite-pop {
-      0%   { transform: scale(1); }
-      40%  { transform: scale(1.3); }
-      100% { transform: scale(1); }
+      0% {
+        transform: scale(1);
+      }
+
+      40% {
+        transform: scale(1.3);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
+
     .btn-favorite:active {
       animation: favorite-pop 0.25s ease-out;
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, ::before, ::after {
+
+      *,
+      ::before,
+      ::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
@@ -121,7 +133,7 @@
   </style>
 </head>
 
-<body class="bg-background text-on-background antialiased">
+<body class="bg-background text-on-background">
   <!-- TopNavBar -->
   <header class="fixed top-0 left-0 w-full h-[56px] z-50 bg-neutral-header flex items-center px-4">
     <div
@@ -134,95 +146,93 @@
     <aside
       class="hidden md:flex flex-col fixed left-0 top-[56px] w-[280px] h-[calc(100vh-56px)] z-40 bg-white dark:bg-inverse-surface p-6 gap-6 font-ui text-sm leading-relaxed ghost-border">
       <div>
-        <h1 class="text-xl font-bold font-headline text-on-background mb-1">Mis favoritos</h1>
+        <h1 class="text-xl font-bold font-headline text-on-background mb-1">Mis puntos favoritos</h1>
         <p class="text-outline">Cádiz Sostenible</p>
       </div>
+      <!-- Search Bar -->
+      <div class="relative">
+        <span
+          class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">search</span>
+        <input aria-label="Buscar municipio o dirección"
+          class="w-full bg-surface-container-low border-none rounded-xl pl-10 py-2 text-sm focus:ring-2 focus:ring-primary/20 outline-none"
+          placeholder="Buscar municipio o dirección..." type="text" />
+      </div>
+      <!-- Filter Chips (Thematic) -->
       <div class="flex flex-wrap gap-2">
-        <button aria-pressed="false" class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-surface-container text-on-surface-variant font-medium transition-transform active:scale-[0.98]">
-          <div aria-hidden="true" class="w-2 h-2 rounded-full bg-primary-container flex-shrink-0"></div>
+        <!-- Vidrio (Primary) -->
+        <button aria-pressed="true"
+          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-primary-container/15 text-on-primary-container border border-primary-container font-medium transition-transform active:scale-[0.98]">
+          <span class="material-symbols-outlined text-[16px]">recycling</span>
           Vidrio
         </button>
-        <button aria-pressed="false" class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-surface-container text-on-surface-variant font-medium transition-transform active:scale-[0.98]">
-          <div aria-hidden="true" class="w-2 h-2 rounded-full bg-secondary-container flex-shrink-0"></div>
+        <!-- Papel (Secondary) -->
+        <button aria-pressed="true"
+          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-secondary-container/15 text-on-secondary-container border border-secondary-container font-medium transition-transform active:scale-[0.98]">
+          <span class="material-symbols-outlined text-[16px]">description</span>
           Papel
         </button>
-        <button aria-pressed="false" class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-surface-container text-on-surface-variant font-medium transition-transform active:scale-[0.98]">
-          <div aria-hidden="true" class="w-2 h-2 rounded-full bg-tertiary-container flex-shrink-0"></div>
+        <!-- Envases (Tertiary) -->
+        <button aria-pressed="true"
+          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-tertiary-container/15 text-on-tertiary-container border border-tertiary-container font-medium transition-transform active:scale-[0.98]">
+          <span class="material-symbols-outlined text-[16px]">inventory_2</span>
           Envases
         </button>
-        <button aria-pressed="false" class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-surface-container text-on-surface-variant font-medium transition-transform active:scale-[0.98]">
-          <div aria-hidden="true" class="w-2 h-2 rounded-full bg-outline flex-shrink-0"></div>
+        <!-- Pilas (Inactive) -->
+        <button aria-pressed="false"
+          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-surface-container text-on-surface-variant font-medium transition-transform active:scale-[0.98]">
+          <span class="material-symbols-outlined text-[16px]">battery_charging_full</span>
           Pilas
         </button>
-        <button aria-pressed="false" class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-surface-container text-on-surface-variant font-medium transition-transform active:scale-[0.98]">
-          <div aria-hidden="true" class="w-2 h-2 rounded-full bg-outline flex-shrink-0"></div>
+        <!-- Ropa (Inactive) -->
+        <button aria-pressed="false"
+          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-surface-container text-on-surface-variant font-medium transition-transform active:scale-[0.98]">
+          <span class="material-symbols-outlined text-[16px]">checkroom</span>
           Ropa
         </button>
       </div>
-      <div class="flex-1 overflow-y-auto">
-        <div class="text-[12px] text-outline mb-4 px-1 uppercase tracking-wider font-medium">3 favoritos guardados</div>
-        <div class="flex flex-col gap-3">
-          <!-- Favorite Item 1 -->
-          <button
-            aria-label="Calle Ancha, 12 — Papel y Cartón, a 250 metros. Ver detalle"
-            class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/15 hover:scale-[0.98] transition-transform duration-200 w-full text-left">
-            <div class="flex justify-between items-start mb-2">
-              <div class="flex items-center gap-1.5">
-                <div aria-hidden="true" class="w-2 h-2 rounded-full bg-secondary-container flex-shrink-0"></div>
-                <span class="text-[10px] font-medium text-on-surface-variant">Papel y Cartón</span>
+      <div class="mt-4 flex-1 overflow-y-auto">
+        <div class="text-[12px] text-outline mb-4 px-2 uppercase tracking-wider font-medium">3
+          favoritos</div>
+        <div class="space-y-1">
+          <!-- Point Item 1 -->
+          <button aria-label="Av. Ana de Viya, 12 — a 250 metros. Ver detalle"
+            class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left">
+            <div class="flex items-center gap-3">
+              <div aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-primary-container flex-shrink-0"></div>
+              <div>
+                <div class="text-[13px] font-medium text-on-surface">Av. Ana de Viya, 12</div>
+                <div class="text-[11px] text-outline">A 250m de ti</div>
               </div>
-              <span aria-hidden="true" class="material-symbols-outlined text-tertiary-container favorite-fill text-lg">favorite</span>
             </div>
-            <h3 class="font-bold text-on-surface mb-1">Calle Ancha, 12</h3>
-            <div class="flex items-center gap-2 text-outline text-xs">
-              <span aria-hidden="true" class="material-symbols-outlined text-[14px]">near_me</span>
-              <span>250m</span>
-            </div>
+            <span aria-hidden="true"
+              class="material-symbols-outlined text-outline-variant opacity-70 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
           </button>
-          <!-- Favorite Item 2 -->
-          <button
-            aria-label="Plaza Mina, 4 — Vidrio, a 400 metros. Ver detalle"
-            class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/15 hover:scale-[0.98] transition-transform duration-200 w-full text-left">
-            <div class="flex justify-between items-start mb-2">
-              <div class="flex items-center gap-1.5">
-                <div aria-hidden="true" class="w-2 h-2 rounded-full bg-primary-container flex-shrink-0"></div>
-                <span class="text-[10px] font-medium text-on-surface-variant">Vidrio</span>
+          <!-- Point Item 2 -->
+          <button aria-label="Plaza de las Flores, 3 — a 400 metros. Ver detalle"
+            class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left">
+            <div class="flex items-center gap-3">
+              <div aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-secondary-container flex-shrink-0"></div>
+              <div>
+                <div class="text-[13px] font-medium text-on-surface">Plaza de las Flores, 3</div>
+                <div class="text-[11px] text-outline">A 400m de ti</div>
               </div>
-              <span aria-hidden="true" class="material-symbols-outlined text-tertiary-container favorite-fill text-lg">favorite</span>
             </div>
-            <h3 class="font-bold text-on-surface mb-1">Plaza Mina, 4</h3>
-            <div class="flex items-center gap-2 text-outline text-xs">
-              <span aria-hidden="true" class="material-symbols-outlined text-[14px]">near_me</span>
-              <span>400m</span>
-            </div>
+            <span aria-hidden="true"
+              class="material-symbols-outlined text-outline-variant opacity-70 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
           </button>
-          <!-- Favorite Item 3 -->
-          <button
-            aria-label="Mercado Central — Pilas, a 850 metros. Ver detalle"
-            class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/15 hover:scale-[0.98] transition-transform duration-200 w-full text-left">
-            <div class="flex justify-between items-start mb-2">
-              <div class="flex items-center gap-1.5">
-                <div aria-hidden="true" class="w-2 h-2 rounded-full bg-tertiary-container flex-shrink-0"></div>
-                <span class="text-[10px] font-medium text-on-surface-variant">Pilas</span>
+          <!-- Point Item 3 -->
+          <button aria-label="Calle Columela, 18 — a 600 metros. Ver detalle"
+            class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left">
+            <div class="flex items-center gap-3">
+              <div aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-tertiary-container flex-shrink-0"></div>
+              <div>
+                <div class="text-[13px] font-medium text-on-surface">Calle Columela, 18</div>
+                <div class="text-[11px] text-outline">A 600m de ti</div>
               </div>
-              <span aria-hidden="true" class="material-symbols-outlined text-tertiary-container favorite-fill text-lg">favorite</span>
             </div>
-            <h3 class="font-bold text-on-surface mb-1">Mercado Central</h3>
-            <div class="flex items-center gap-2 text-outline text-xs">
-              <span aria-hidden="true" class="material-symbols-outlined text-[14px]">near_me</span>
-              <span>850m</span>
-            </div>
+            <span aria-hidden="true"
+              class="material-symbols-outlined text-outline-variant opacity-70 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
           </button>
-        </div>
-        <!-- Estado vacío (visible cuando no hay favoritos guardados) -->
-        <div class="hidden flex-col items-center gap-4 py-6 px-2" aria-live="polite">
-          <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center">
-            <span class="material-symbols-outlined text-outline">favorite_border</span>
-          </div>
-          <div class="text-center">
-            <p class="font-headline font-bold text-sm text-on-surface mb-1">Aún sin favoritos</p>
-            <p class="text-xs text-outline leading-relaxed">Guarda los puntos que más uses para encontrarlos aquí.</p>
-          </div>
         </div>
       </div>
       <a href="index.html"
@@ -230,104 +240,139 @@
         Volver al mapa
       </a>
     </aside>
-    <!-- Main Content Area (Map) -->
-    <main class="ml-0 w-full md:ml-[280px] md:w-[calc(100%-280px)] h-full relative bg-surface-container-low overflow-hidden">
-      <!-- Map Background Representation -->
-      <div class="absolute inset-0 z-0">
-        <img alt="Plano urbano de Cádiz con calles y línea de costa en tonos grises suaves"
-          class="w-full h-full object-cover opacity-60"
-          data-location="Cádiz"
-          decoding="async"
-          fetchpriority="high"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtZLtMElGK2dV7sqCbjxsx-tb1MMNSX6vD7rocTuLHyvMP_qGXwiGVQhS6joeunlQvNOIh1YerMyiNdXPaC92s5Yzt1UoB2d2uO03Yg9JEAXGn3Jd-mtq7w0XFIcxxqD039gkQ5DfmBZe1BdsjX5Yt-8otWQpDrX-Ry8J90EO8nDO7KYp31n4edFpA2gsL2uyuACmoGq08NB_SAlQEaWTlOlWEDKulVqDyBigq9nD-T4X5cJSyuPGwrkOFnCMEcbxZSxYnQG7N2XaT" />
-      </div>
+    <!-- Main Map Area -->
+    <main class="ml-0 md:ml-[280px] flex-1 relative bg-surface-container-low overflow-hidden">
+      <img
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAReAK3WTzPqqwdpGtpb_6-2f-yn2qp2vX9t3K9MOPFeukaP0lvxW7g9g8u9fHqxzUqzlJri6-eCq1HXh_6GjBg1LxU-9FL3AIFIzO1FnpAJtStFm7AZhxbZyWGnaRSeYk_YOGzCPQUfG5hIbAmOl7FAFeaN2gtuUjbmE8PPddTP6Y_E9Wl3n69oX9ArnuVOjGcDiy3vAj5G3tjGGRAINrBEOaIOKtxDO29hF0pmfdxeZ_zPpCz00tm0QnmyqbZctHNdHTKHM8IPERN"
+        alt="" decoding="async" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover opacity-30"
+        aria-hidden="true" />
       <!-- Mobile Search Overlay -->
-      <div class="md:hidden absolute top-4 left-4 right-4 z-20">
+      <div class="md:hidden absolute top-4 left-4 right-16 z-20">
         <div
           class="bg-white/90 dark:bg-inverse-surface/90 dark:text-inverse-on-surface backdrop-blur-xl rounded-full flex items-center gap-2 px-4 py-2.5 shadow-sm">
           <span class="material-symbols-outlined text-outline text-[20px]">search</span>
-          <input aria-label="Buscar favoritos"
-            class="bg-transparent border-none outline-none text-sm flex-1 text-on-surface" placeholder="Buscar favoritos..."
+          <input aria-label="Buscar punto de reciclaje"
+            class="bg-transparent border-none outline-none text-sm flex-1 text-on-surface" placeholder="Buscar punto..."
             type="text" />
         </div>
       </div>
-      <!-- Favorite Map Pins -->
-      <div class="absolute top-[40%] left-[45%] -translate-x-1/2 -translate-y-1/2">
-        <button aria-label="Favorito: Punto de reciclaje de vidrio" class="w-11 h-11 flex items-center justify-center">
-          <div class="relative">
-            <div class="w-6 h-6 bg-primary rounded-full border-4 border-white shadow-md ring-4 ring-primary/25"></div>
-            <div class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-tertiary rounded-full border-2 border-white flex items-center justify-center">
-              <span aria-hidden="true" class="material-symbols-outlined text-white" style="font-size: 8px; font-variation-settings: 'FILL' 1;">favorite</span>
-            </div>
+      <!-- Map Pointers -->
+      <!-- Glass Point (seleccionado — corresponde a Av. Ana de Viya, 12) -->
+      <div class="absolute top-[20%] left-[30%] -translate-x-1/2 -translate-y-1/2">
+        <button aria-label="Punto de reciclaje de vidrio — Av. Ana de Viya, 12 (seleccionado)"
+          class="w-11 h-11 flex items-center justify-center">
+          <div class="w-6 h-6 bg-primary rounded-full border-4 border-white shadow-md ring-4 ring-primary/25">
           </div>
         </button>
       </div>
-      <div class="absolute top-[25%] left-[60%] -translate-x-1/2 -translate-y-1/2">
-        <button aria-label="Favorito: Punto de reciclaje de papel" class="w-11 h-11 flex items-center justify-center">
-          <div class="relative">
-            <div class="w-5 h-5 bg-secondary rounded-full border-4 border-white shadow-md ring-4 ring-secondary/25"></div>
-            <div class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-tertiary rounded-full border-2 border-white flex items-center justify-center">
-              <span aria-hidden="true" class="material-symbols-outlined text-white" style="font-size: 8px; font-variation-settings: 'FILL' 1;">favorite</span>
-            </div>
+      <!-- Paper Point -->
+      <div class="absolute top-[45%] left-[55%] -translate-x-1/2 -translate-y-1/2">
+        <button aria-label="Punto de reciclaje de papel" class="w-11 h-11 flex items-center justify-center">
+          <div
+            class="w-5 h-5 bg-secondary-container rounded-full border-2 border-white shadow-sm ring-4 ring-secondary-container/20">
           </div>
         </button>
       </div>
-      <div class="absolute bottom-[30%] left-[30%] -translate-x-1/2 -translate-y-1/2">
-        <button aria-label="Favorito: Punto de reciclaje de pilas" class="w-11 h-11 flex items-center justify-center">
-          <div class="relative">
-            <div class="w-5 h-5 bg-tertiary rounded-full border-4 border-white shadow-md ring-4 ring-tertiary/25"></div>
-            <div class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-tertiary rounded-full border-2 border-white flex items-center justify-center">
-              <span aria-hidden="true" class="material-symbols-outlined text-white" style="font-size: 8px; font-variation-settings: 'FILL' 1;">favorite</span>
-            </div>
+      <!-- Container Point -->
+      <div class="absolute top-[30%] left-[70%] -translate-x-1/2 -translate-y-1/2">
+        <button aria-label="Punto de reciclaje de envases" class="w-11 h-11 flex items-center justify-center">
+          <div
+            class="w-5 h-5 bg-tertiary-container rounded-full border-2 border-white shadow-sm ring-4 ring-tertiary-container/20">
           </div>
         </button>
       </div>
-      <!-- Non-favorite point for contrast -->
-      <div class="absolute top-[60%] left-[70%] -translate-x-1/2 -translate-y-1/2">
+      <!-- Glass Point 2 -->
+      <div class="absolute top-[65%] left-[40%] -translate-x-1/2 -translate-y-1/2">
         <button aria-label="Punto de reciclaje de vidrio" class="w-11 h-11 flex items-center justify-center">
-          <div class="w-5 h-5 bg-primary-container rounded-full border-2 border-white shadow-sm ring-4 ring-primary-container/20"></div>
+          <div
+            class="w-5 h-5 bg-primary-container rounded-full border-2 border-white shadow-sm ring-4 ring-primary-container/20">
+          </div>
         </button>
       </div>
-      <!-- Floating Card Detail (Asymmetric Layout) -->
-      <div
-        class="absolute bottom-[84px] left-3 right-3 md:bottom-8 md:right-8 md:left-auto md:w-[280px] z-30 bg-white/90 dark:bg-inverse-surface/90 dark:text-inverse-on-surface backdrop-blur-xl rounded-2xl p-4 border border-white/30 dark:border-white/10">
-        <div class="flex justify-between items-start mb-4">
-          <div>
-            <span
-              class="bg-tertiary-container text-on-tertiary-container text-[10px] font-extrabold px-2 py-1 rounded-full uppercase">Punto
-              Destacado</span>
-            <h2 class="font-headline font-bold text-base leading-tight text-on-surface mt-1">Calle Ancha, 12</h2>
+      <!-- Paper Point 2 -->
+      <div class="absolute top-[80%] left-[25%] -translate-x-1/2 -translate-y-1/2">
+        <button aria-label="Punto de reciclaje de papel" class="w-11 h-11 flex items-center justify-center">
+          <div
+            class="w-5 h-5 bg-secondary-container rounded-full border-2 border-white shadow-sm ring-4 ring-secondary-container/20">
           </div>
-          <div class="flex items-center gap-1">
-            <button aria-label="Eliminar de favoritos" class="material-symbols-outlined text-tertiary-container favorite-fill bg-transparent border-0 min-w-[32px] min-h-[32px] flex items-center justify-center btn-favorite hover:scale-110 transition-transform">favorite</button>
-            <button aria-label="Cerrar tarjeta" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container/50 transition-colors text-outline">
+        </button>
+      </div>
+      <!-- Container Point 2 -->
+      <div class="absolute top-[75%] left-[65%] -translate-x-1/2 -translate-y-1/2">
+        <button aria-label="Punto de reciclaje de envases" class="w-11 h-11 flex items-center justify-center">
+          <div
+            class="w-5 h-5 bg-tertiary-container rounded-full border-2 border-white shadow-sm ring-4 ring-tertiary-container/20">
+          </div>
+        </button>
+      </div>
+      <!-- Map Controls + FAB agrupados (top-right) -->
+      <div class="absolute top-4 right-4 flex flex-col gap-2 z-20">
+        <div class="bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md rounded-lg overflow-hidden flex flex-col">
+          <button aria-label="Ampliar mapa"
+            class="w-11 h-11 flex items-center justify-center text-on-surface dark:text-inverse-on-surface hover:bg-surface-container dark:hover:bg-white/10 transition-colors">
+            <span aria-hidden="true" class="material-symbols-outlined text-[20px]">add</span>
+          </button>
+          <div class="h-px w-full bg-surface-container-high dark:bg-white/10"></div>
+          <button aria-label="Alejar mapa"
+            class="w-11 h-11 flex items-center justify-center text-on-surface dark:text-inverse-on-surface hover:bg-surface-container dark:hover:bg-white/10 transition-colors">
+            <span aria-hidden="true" class="material-symbols-outlined text-[20px]">remove</span>
+          </button>
+        </div>
+        <button aria-label="Ver capas del mapa"
+          class="w-11 h-11 flex items-center justify-center bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md rounded-lg text-on-surface dark:text-inverse-on-surface hover:bg-white dark:hover:bg-inverse-surface transition-colors">
+          <span aria-hidden="true" class="material-symbols-outlined text-[20px]">layers</span>
+        </button>
+        <button aria-label="Mi ubicación"
+          class="mt-2 w-11 h-11 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-lg">
+          <span aria-hidden="true" class="material-symbols-outlined"
+            style="font-variation-settings: 'FILL' 1;">my_location</span>
+        </button>
+      </div>
+      <!-- Floating Detail Card -->
+      <div
+        class="absolute bottom-[84px] left-3 right-3 md:bottom-8 md:right-8 md:left-auto md:w-[280px] z-30 bg-white/90 dark:bg-inverse-surface/90 dark:text-inverse-on-surface backdrop-blur-xl rounded-2xl p-4 flex flex-col gap-3">
+        <div class="flex items-start justify-between">
+          <h2 class="font-headline font-bold text-base leading-tight text-on-surface">Av. Ana de Viya, 12</h2>
+          <div class="flex items-center gap-1 flex-shrink-0 ml-2">
+            <button aria-label="Guardar en favoritos"
+              class="text-tertiary hover:scale-110 transition-transform btn-favorite w-8 h-8 flex items-center justify-center rounded-full">
+              <span aria-hidden="true" class="material-symbols-outlined text-[18px]">favorite_border</span>
+            </button>
+            <button aria-label="Cerrar tarjeta"
+              class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container/50 transition-colors text-outline">
               <span aria-hidden="true" class="material-symbols-outlined text-[18px]">close</span>
             </button>
           </div>
         </div>
-        <div class="flex flex-col gap-4">
-          <div class="flex justify-between items-end">
-            <div class="flex flex-col gap-1">
-              <span class="text-xs text-outline uppercase font-bold tracking-tighter">Capacidad</span>
-              <div class="w-32 h-1.5 bg-surface-variant rounded-full overflow-hidden">
-                <div class="w-3/4 h-full bg-primary"></div>
-              </div>
-            </div>
-            <span class="text-xs font-bold text-primary">75%</span>
-          </div>
-          <button
-            class="w-full h-[36px] bg-primary text-on-primary hover:opacity-90 active:scale-[0.98] transition-all font-ui font-medium text-[13px] rounded-xl flex items-center justify-center gap-2 mt-1">
-            <span aria-hidden="true" class="material-symbols-outlined text-base">directions</span>
-            Cómo llegar
-          </button>
+        <!-- Chips Row -->
+        <div class="flex flex-wrap gap-1.5">
+          <div
+            class="px-2.5 py-1 bg-primary-container/20 text-on-primary-container rounded-full text-[10px] font-bold uppercase tracking-wider">
+            Vidrio</div>
+          <div
+            class="px-2.5 py-1 bg-surface-container-highest text-on-surface-variant rounded-full text-[10px] font-bold uppercase tracking-wider">
+            L-V 08-20h</div>
         </div>
+        <div class="flex items-center gap-1.5">
+          <span aria-hidden="true" class="material-symbols-outlined text-[16px] text-outline">near_me</span>
+          <span class="font-ui text-[12px] text-outline">A 250 metros de tu ubicación</span>
+        </div>
+        <button
+          class="w-full h-[36px] bg-primary text-on-primary hover:opacity-90 active:scale-[0.98] transition-all font-ui font-medium text-[13px] rounded-xl flex items-center justify-center gap-2 mt-1">
+          <span aria-hidden="true" class="material-symbols-outlined text-base">directions</span>
+          Cómo llegar
+        </button>
       </div>
     </main>
   </div>
   <!-- BottomNavBar (Mobile Only) -->
-  <nav aria-label="Categorías de reciclaje" class="md:hidden fixed bottom-0 left-0 w-full h-[72px] bg-white dark:bg-inverse-surface dark:border-t dark:border-outline-variant/15 flex items-center justify-around px-2 z-50">
-    <button class="flex flex-col items-center gap-1 text-outline min-w-[44px] min-h-[44px] justify-center">
-      <span class="material-symbols-outlined">recycling</span>
+  <nav aria-label="Categorías de reciclaje"
+    class="md:hidden fixed bottom-0 left-0 w-full h-[72px] bg-white dark:bg-inverse-surface dark:border-t dark:border-outline-variant/15 flex items-center justify-around px-2 z-50">
+    <button
+      class="flex flex-col items-center gap-1 text-primary dark:text-primary-container min-w-[44px] min-h-[44px] justify-center">
+      <div class="bg-primary-container/20 px-4 py-1 rounded-full">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">recycling</span>
+      </div>
       <span class="text-[10px] font-bold uppercase tracking-tighter">Vidrio</span>
     </button>
     <button class="flex flex-col items-center gap-1 text-outline min-w-[44px] min-h-[44px] justify-center">
