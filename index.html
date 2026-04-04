@@ -120,6 +120,44 @@
       animation: favorite-pop 0.25s ease-out;
     }
 
+    .loading-shell {
+      display: none;
+    }
+
+    .skeleton-block {
+      position: relative;
+      overflow: hidden;
+      background-color: rgba(187, 202, 188, 0.18);
+    }
+
+    .skeleton-block::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translateX(-100%);
+      background: linear-gradient(90deg,
+          rgba(187, 202, 188, 0) 0%,
+          rgba(187, 202, 188, 0.32) 50%,
+          rgba(187, 202, 188, 0) 100%);
+      animation: skeleton-shimmer 1.6s ease-in-out infinite;
+    }
+
+    @keyframes skeleton-shimmer {
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    body[data-loading="true"] .app-shell {
+      visibility: hidden;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    body[data-loading="true"] .loading-shell {
+      display: block;
+    }
+
     @media (prefers-reduced-motion: reduce) {
 
       *,
@@ -129,11 +167,17 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
+
+      .skeleton-block::after {
+        content: none;
+      }
     }
   </style>
 </head>
 
-<body class="bg-background text-on-background">
+<!-- modify data-loading attribute to control loading state -->
+
+<body class="bg-background text-on-background" data-loading="false" aria-busy="false">
   <!-- TopNavBar -->
   <header class="fixed top-0 left-0 w-full h-[56px] z-50 bg-neutral-header flex items-center px-4">
     <div
@@ -141,272 +185,388 @@
       ReciclaCAD
     </div>
   </header>
-  <div class="flex h-screen pt-[56px]">
-    <!-- SideNavBar -->
-    <aside
-      class="hidden md:flex flex-col fixed left-0 top-[56px] w-[280px] h-[calc(100vh-56px)] z-40 bg-white dark:bg-inverse-surface p-6 gap-6 font-ui text-sm leading-relaxed ghost-border">
-      <div>
-        <h1 class="text-xl font-bold font-headline text-on-background mb-1">Encuentra tu punto</h1>
-        <p class="text-outline">Cádiz Sostenible</p>
-      </div>
-      <!-- Search Bar -->
-      <div class="relative">
-        <span
-          class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">search</span>
-        <input aria-label="Buscar por dirección"
-          class="w-full bg-surface-container-low border-none rounded-xl pl-10 py-2 text-sm focus:ring-2 focus:ring-primary/20 outline-none"
-          placeholder="Buscar por dirección..." type="text" />
-      </div>
-      <!-- Filter Chips (Thematic) -->
-      <div class="flex flex-wrap gap-2">
-        <!-- Vidrio (Primary) -->
-        <button aria-pressed="true"
-          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-primary-container/15 text-on-primary-container border border-primary-container font-medium transition-transform active:scale-[0.98]">
-          <span class="material-symbols-outlined text-[16px]">recycling</span>
-          Vidrio
-        </button>
-        <!-- Papel (Secondary) -->
-        <button aria-pressed="true"
-          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-secondary-container/15 text-on-secondary-container border border-secondary-container font-medium transition-transform active:scale-[0.98]">
-          <span class="material-symbols-outlined text-[16px]">description</span>
-          Papel
-        </button>
-        <!-- Envases (Tertiary) -->
-        <button aria-pressed="true"
-          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-tertiary-container/15 text-on-tertiary-container border border-tertiary-container font-medium transition-transform active:scale-[0.98]">
-          <span class="material-symbols-outlined text-[16px]">inventory_2</span>
-          Envases
-        </button>
-        <!-- Pilas (Inactive) -->
-        <button aria-pressed="false"
-          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-surface-container text-on-surface-variant font-medium transition-transform active:scale-[0.98]">
-          <span class="material-symbols-outlined text-[16px]">battery_charging_full</span>
-          Pilas
-        </button>
-        <!-- Ropa (Inactive) -->
-        <button aria-pressed="false"
-          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-surface-container text-on-surface-variant font-medium transition-transform active:scale-[0.98]">
-          <span class="material-symbols-outlined text-[16px]">checkroom</span>
-          Ropa
-        </button>
-      </div>
-      <div class="mt-4 flex-1 overflow-y-auto">
-        <div
-          class="text-[12px] text-outline mb-4 px-2 uppercase tracking-wider font-medium sticky top-0 z-10 bg-white dark:bg-inverse-surface">
-          342
-          puntos encontrados</div>
-        <div class="space-y-1">
-          <!-- Point Item 1 -->
-          <button aria-label="Av. Ana de Viya, 12 — a 250 metros. Ver detalle"
-            class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left">
-            <div class="flex items-center gap-3">
-              <div aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-primary-container flex-shrink-0"></div>
-              <div>
-                <div class="text-[13px] font-medium text-on-surface">Av. Ana de Viya, 12</div>
-                <div class="text-[11px] text-outline">A 250m de ti</div>
-              </div>
-            </div>
-            <span aria-hidden="true"
-              class="material-symbols-outlined text-outline-variant opacity-70 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
+  <div class="app-shell">
+    <div class="flex h-screen pt-[56px]">
+      <!-- SideNavBar -->
+      <aside
+        class="hidden md:flex flex-col fixed left-0 top-[56px] w-[280px] h-[calc(100vh-56px)] z-40 bg-white dark:bg-inverse-surface p-6 gap-6 font-ui text-sm leading-relaxed ghost-border">
+        <div>
+          <h1 class="text-xl font-bold font-headline text-on-background mb-1">Encuentra tu punto</h1>
+          <p class="text-outline">Cádiz Sostenible</p>
+        </div>
+        <!-- Search Bar -->
+        <div class="relative">
+          <span
+            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">search</span>
+          <input aria-label="Buscar por dirección"
+            class="w-full bg-surface-container-low border-none rounded-xl pl-10 py-2 text-sm focus:ring-2 focus:ring-primary/20 outline-none"
+            placeholder="Buscar por dirección..." type="text" />
+        </div>
+        <!-- Filter Chips (Thematic) -->
+        <div class="flex flex-wrap gap-2">
+          <!-- Vidrio (Primary) -->
+          <button aria-pressed="true"
+            class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-primary-container/15 text-on-primary-container border border-primary-container font-medium transition-transform active:scale-[0.98]">
+            <span class="material-symbols-outlined text-[16px]">recycling</span>
+            Vidrio
           </button>
-          <!-- Point Item 2 -->
-          <button aria-label="Plaza de las Flores, 3 — a 400 metros. Ver detalle"
-            class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left">
-            <div class="flex items-center gap-3">
-              <div aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-secondary-container flex-shrink-0"></div>
-              <div>
-                <div class="text-[13px] font-medium text-on-surface">Plaza de las Flores, 3</div>
-                <div class="text-[11px] text-outline">A 400m de ti</div>
-              </div>
-            </div>
-            <span aria-hidden="true"
-              class="material-symbols-outlined text-outline-variant opacity-70 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
+          <!-- Papel (Secondary) -->
+          <button aria-pressed="true"
+            class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-secondary-container/15 text-on-secondary-container border border-secondary-container font-medium transition-transform active:scale-[0.98]">
+            <span class="material-symbols-outlined text-[16px]">description</span>
+            Papel
           </button>
-          <!-- Point Item 3 -->
-          <button aria-label="Calle Columela, 18 — a 600 metros. Ver detalle"
-            class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left">
-            <div class="flex items-center gap-3">
-              <div aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-tertiary-container flex-shrink-0"></div>
-              <div>
-                <div class="text-[13px] font-medium text-on-surface">Calle Columela, 18</div>
-                <div class="text-[11px] text-outline">A 600m de ti</div>
-              </div>
-            </div>
-            <span aria-hidden="true"
-              class="material-symbols-outlined text-outline-variant opacity-70 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
+          <!-- Envases (Tertiary) -->
+          <button aria-pressed="true"
+            class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-tertiary-container/15 text-on-tertiary-container border border-tertiary-container font-medium transition-transform active:scale-[0.98]">
+            <span class="material-symbols-outlined text-[16px]">inventory_2</span>
+            Envases
           </button>
-          <!-- Point Item 4 -->
-          <button aria-label="Paseo Marítimo, 45 — a 850 metros. Ver detalle"
-            class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left">
-            <div class="flex items-center gap-3">
-              <div aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-primary-container flex-shrink-0"></div>
-              <div>
-                <div class="text-[13px] font-medium text-on-surface">Paseo Marítimo, 45</div>
-                <div class="text-[11px] text-outline">A 850m de ti</div>
-              </div>
-            </div>
-            <span aria-hidden="true"
-              class="material-symbols-outlined text-outline-variant opacity-70 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
+          <!-- Pilas (Inactive) -->
+          <button aria-pressed="false"
+            class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-surface-container text-on-surface-variant font-medium transition-transform active:scale-[0.98]">
+            <span class="material-symbols-outlined text-[16px]">battery_charging_full</span>
+            Pilas
+          </button>
+          <!-- Ropa (Inactive) -->
+          <button aria-pressed="false"
+            class="flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] bg-surface-container text-on-surface-variant font-medium transition-transform active:scale-[0.98]">
+            <span class="material-symbols-outlined text-[16px]">checkroom</span>
+            Ropa
           </button>
         </div>
-      </div>
-      <a href="favorites.html"
-        class="mt-auto w-full py-3 bg-tertiary text-on-tertiary font-bold rounded-full text-center block transition-transform active:scale-[0.98] hover:opacity-90">
-        Mis favoritos
-      </a>
-    </aside>
-    <!-- Main Map Area -->
-    <main class="ml-0 md:ml-[280px] flex-1 relative bg-surface-container-low overflow-hidden">
-      <img
-        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAReAK3WTzPqqwdpGtpb_6-2f-yn2qp2vX9t3K9MOPFeukaP0lvxW7g9g8u9fHqxzUqzlJri6-eCq1HXh_6GjBg1LxU-9FL3AIFIzO1FnpAJtStFm7AZhxbZyWGnaRSeYk_YOGzCPQUfG5hIbAmOl7FAFeaN2gtuUjbmE8PPddTP6Y_E9Wl3n69oX9ArnuVOjGcDiy3vAj5G3tjGGRAINrBEOaIOKtxDO29hF0pmfdxeZ_zPpCz00tm0QnmyqbZctHNdHTKHM8IPERN"
-        alt="" decoding="async" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover opacity-30"
-        aria-hidden="true" />
-      <!-- Mobile Search Overlay -->
-      <div class="md:hidden absolute top-4 left-4 right-16 z-20">
-        <div
-          class="bg-white/90 dark:bg-inverse-surface/90 dark:text-inverse-on-surface backdrop-blur-xl rounded-full flex items-center gap-2 px-4 py-2.5 shadow-sm">
-          <span class="material-symbols-outlined text-outline text-[20px]">search</span>
-          <input aria-label="Buscar punto de reciclaje"
-            class="bg-transparent border-none outline-none text-sm flex-1 text-on-surface" placeholder="Buscar punto..."
-            type="text" />
-        </div>
-      </div>
-      <!-- Map Pointers -->
-      <!-- Glass Point (seleccionado — corresponde a Av. Ana de Viya, 12) -->
-      <div class="absolute top-[20%] left-[30%] -translate-x-1/2 -translate-y-1/2">
-        <button aria-label="Punto de reciclaje de vidrio — Av. Ana de Viya, 12 (seleccionado)"
-          class="w-11 h-11 flex items-center justify-center">
-          <div class="w-6 h-6 bg-primary rounded-full border-4 border-white shadow-md ring-4 ring-primary/25">
-          </div>
-        </button>
-      </div>
-      <!-- Paper Point -->
-      <div class="absolute top-[45%] left-[55%] -translate-x-1/2 -translate-y-1/2">
-        <button aria-label="Punto de reciclaje de papel" class="w-11 h-11 flex items-center justify-center">
+        <div class="mt-4 flex-1 overflow-y-auto">
           <div
-            class="w-5 h-5 bg-secondary-container rounded-full border-2 border-white shadow-sm ring-4 ring-secondary-container/20">
-          </div>
-        </button>
-      </div>
-      <!-- Container Point -->
-      <div class="absolute top-[30%] left-[70%] -translate-x-1/2 -translate-y-1/2">
-        <button aria-label="Punto de reciclaje de envases" class="w-11 h-11 flex items-center justify-center">
-          <div
-            class="w-5 h-5 bg-tertiary-container rounded-full border-2 border-white shadow-sm ring-4 ring-tertiary-container/20">
-          </div>
-        </button>
-      </div>
-      <!-- Glass Point 2 -->
-      <div class="absolute top-[65%] left-[40%] -translate-x-1/2 -translate-y-1/2">
-        <button aria-label="Punto de reciclaje de vidrio" class="w-11 h-11 flex items-center justify-center">
-          <div
-            class="w-5 h-5 bg-primary-container rounded-full border-2 border-white shadow-sm ring-4 ring-primary-container/20">
-          </div>
-        </button>
-      </div>
-      <!-- Paper Point 2 -->
-      <div class="absolute top-[80%] left-[25%] -translate-x-1/2 -translate-y-1/2">
-        <button aria-label="Punto de reciclaje de papel" class="w-11 h-11 flex items-center justify-center">
-          <div
-            class="w-5 h-5 bg-secondary-container rounded-full border-2 border-white shadow-sm ring-4 ring-secondary-container/20">
-          </div>
-        </button>
-      </div>
-      <!-- Container Point 2 -->
-      <div class="absolute top-[75%] left-[65%] -translate-x-1/2 -translate-y-1/2">
-        <button aria-label="Punto de reciclaje de envases" class="w-11 h-11 flex items-center justify-center">
-          <div
-            class="w-5 h-5 bg-tertiary-container rounded-full border-2 border-white shadow-sm ring-4 ring-tertiary-container/20">
-          </div>
-        </button>
-      </div>
-      <!-- Map Controls + FAB agrupados (top-right) -->
-      <div class="absolute top-4 right-4 flex flex-col gap-2 z-20">
-        <div class="bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md rounded-lg overflow-hidden flex flex-col">
-          <button aria-label="Ampliar mapa"
-            class="w-11 h-11 flex items-center justify-center text-on-surface dark:text-inverse-on-surface hover:bg-surface-container dark:hover:bg-white/10 transition-colors">
-            <span aria-hidden="true" class="material-symbols-outlined text-[20px]">add</span>
-          </button>
-          <div class="h-px w-full bg-surface-container-high dark:bg-white/10"></div>
-          <button aria-label="Alejar mapa"
-            class="w-11 h-11 flex items-center justify-center text-on-surface dark:text-inverse-on-surface hover:bg-surface-container dark:hover:bg-white/10 transition-colors">
-            <span aria-hidden="true" class="material-symbols-outlined text-[20px]">remove</span>
-          </button>
-        </div>
-        <button aria-label="Ver capas del mapa"
-          class="w-11 h-11 flex items-center justify-center bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md rounded-lg text-on-surface dark:text-inverse-on-surface hover:bg-white dark:hover:bg-inverse-surface transition-colors">
-          <span aria-hidden="true" class="material-symbols-outlined text-[20px]">layers</span>
-        </button>
-        <button aria-label="Mi ubicación"
-          class="mt-2 w-11 h-11 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-lg">
-          <span aria-hidden="true" class="material-symbols-outlined"
-            style="font-variation-settings: 'FILL' 1;">my_location</span>
-        </button>
-      </div>
-      <!-- Floating Detail Card -->
-      <div
-        class="absolute bottom-[84px] left-3 right-3 md:bottom-8 md:right-8 md:left-auto md:w-[280px] z-30 bg-white/90 dark:bg-inverse-surface/90 dark:text-inverse-on-surface backdrop-blur-xl rounded-2xl p-4 flex flex-col gap-3">
-        <div class="flex items-start justify-between">
-          <h2 class="font-headline font-bold text-base leading-tight text-on-surface">Av. Ana de Viya, 12</h2>
-          <div class="flex items-center gap-1 flex-shrink-0 ml-2">
-            <button aria-label="Guardar en favoritos"
-              class="text-tertiary hover:scale-110 transition-transform btn-favorite w-8 h-8 flex items-center justify-center rounded-full">
-              <span aria-hidden="true" class="material-symbols-outlined text-[18px]">favorite_border</span>
+            class="text-[12px] text-outline mb-4 px-2 uppercase tracking-wider font-medium sticky top-0 z-10 bg-white dark:bg-inverse-surface">
+            342
+            puntos encontrados</div>
+          <div class="space-y-1">
+            <!-- Point Item 1 -->
+            <button aria-label="Av. Ana de Viya, 12 — a 250 metros. Ver detalle"
+              class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left">
+              <div class="flex items-center gap-3">
+                <div aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-primary-container flex-shrink-0"></div>
+                <div>
+                  <div class="text-[13px] font-medium text-on-surface">Av. Ana de Viya, 12</div>
+                  <div class="text-[11px] text-outline">A 250m de ti</div>
+                </div>
+              </div>
+              <span aria-hidden="true"
+                class="material-symbols-outlined text-outline-variant opacity-70 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
             </button>
-            <button aria-label="Cerrar tarjeta"
-              class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container/50 transition-colors text-outline">
-              <span aria-hidden="true" class="material-symbols-outlined text-[18px]">close</span>
+            <!-- Point Item 2 -->
+            <button aria-label="Plaza de las Flores, 3 — a 400 metros. Ver detalle"
+              class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left">
+              <div class="flex items-center gap-3">
+                <div aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-secondary-container flex-shrink-0"></div>
+                <div>
+                  <div class="text-[13px] font-medium text-on-surface">Plaza de las Flores, 3</div>
+                  <div class="text-[11px] text-outline">A 400m de ti</div>
+                </div>
+              </div>
+              <span aria-hidden="true"
+                class="material-symbols-outlined text-outline-variant opacity-70 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
+            </button>
+            <!-- Point Item 3 -->
+            <button aria-label="Calle Columela, 18 — a 600 metros. Ver detalle"
+              class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left">
+              <div class="flex items-center gap-3">
+                <div aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-tertiary-container flex-shrink-0"></div>
+                <div>
+                  <div class="text-[13px] font-medium text-on-surface">Calle Columela, 18</div>
+                  <div class="text-[11px] text-outline">A 600m de ti</div>
+                </div>
+              </div>
+              <span aria-hidden="true"
+                class="material-symbols-outlined text-outline-variant opacity-70 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
+            </button>
+            <!-- Point Item 4 -->
+            <button aria-label="Paseo Marítimo, 45 — a 850 metros. Ver detalle"
+              class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group text-left">
+              <div class="flex items-center gap-3">
+                <div aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-primary-container flex-shrink-0"></div>
+                <div>
+                  <div class="text-[13px] font-medium text-on-surface">Paseo Marítimo, 45</div>
+                  <div class="text-[11px] text-outline">A 850m de ti</div>
+                </div>
+              </div>
+              <span aria-hidden="true"
+                class="material-symbols-outlined text-outline-variant opacity-70 group-hover:opacity-100 transition-opacity text-[18px]">favorite</span>
             </button>
           </div>
         </div>
-        <!-- Chips Row -->
-        <div class="flex flex-wrap gap-1.5">
+        <a href="favorites.html"
+          class="mt-auto w-full py-3 bg-tertiary text-on-tertiary font-bold rounded-full text-center block transition-transform active:scale-[0.98] hover:opacity-90">
+          Mis favoritos
+        </a>
+      </aside>
+      <!-- Main Map Area -->
+      <main class="ml-0 md:ml-[280px] flex-1 relative bg-surface-container-low overflow-hidden">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAReAK3WTzPqqwdpGtpb_6-2f-yn2qp2vX9t3K9MOPFeukaP0lvxW7g9g8u9fHqxzUqzlJri6-eCq1HXh_6GjBg1LxU-9FL3AIFIzO1FnpAJtStFm7AZhxbZyWGnaRSeYk_YOGzCPQUfG5hIbAmOl7FAFeaN2gtuUjbmE8PPddTP6Y_E9Wl3n69oX9ArnuVOjGcDiy3vAj5G3tjGGRAINrBEOaIOKtxDO29hF0pmfdxeZ_zPpCz00tm0QnmyqbZctHNdHTKHM8IPERN"
+          alt="" decoding="async" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover opacity-30"
+          aria-hidden="true" />
+        <!-- Mobile Search Overlay -->
+        <div class="md:hidden absolute top-4 left-4 right-16 z-20">
           <div
-            class="px-2.5 py-1 bg-primary-container/20 text-on-primary-container rounded-full text-[10px] font-bold uppercase tracking-wider">
-            Vidrio</div>
-          <div
-            class="px-2.5 py-1 bg-surface-container-highest text-on-surface-variant rounded-full text-[10px] font-bold uppercase tracking-wider">
-            L-V 08-20h</div>
+            class="bg-white/90 dark:bg-inverse-surface/90 dark:text-inverse-on-surface backdrop-blur-xl rounded-full flex items-center gap-2 px-4 py-2.5 shadow-sm">
+            <span class="material-symbols-outlined text-outline text-[20px]">search</span>
+            <input aria-label="Buscar punto de reciclaje"
+              class="bg-transparent border-none outline-none text-sm flex-1 text-on-surface"
+              placeholder="Buscar punto..." type="text" />
+          </div>
         </div>
-        <div class="flex items-center gap-1.5">
-          <span aria-hidden="true" class="material-symbols-outlined text-[16px] text-outline">near_me</span>
-          <span class="font-ui text-[12px] text-outline">A 250 metros de ti</span>
+        <!-- Map Pointers -->
+        <!-- Glass Point (seleccionado — corresponde a Av. Ana de Viya, 12) -->
+        <div class="absolute top-[20%] left-[30%] -translate-x-1/2 -translate-y-1/2">
+          <button aria-label="Punto de reciclaje de vidrio — Av. Ana de Viya, 12 (seleccionado)"
+            class="w-11 h-11 flex items-center justify-center">
+            <div class="w-6 h-6 bg-primary rounded-full border-4 border-white shadow-md ring-4 ring-primary/25">
+            </div>
+          </button>
         </div>
-        <button
-          class="w-full h-[36px] bg-primary text-on-primary hover:opacity-90 active:scale-[0.98] transition-all font-ui font-medium text-[13px] rounded-xl flex items-center justify-center gap-2 mt-1">
-          <span aria-hidden="true" class="material-symbols-outlined text-base">directions</span>
-          Cómo llegar
-        </button>
-      </div>
-    </main>
+        <!-- Paper Point -->
+        <div class="absolute top-[45%] left-[55%] -translate-x-1/2 -translate-y-1/2">
+          <button aria-label="Punto de reciclaje de papel" class="w-11 h-11 flex items-center justify-center">
+            <div
+              class="w-5 h-5 bg-secondary-container rounded-full border-2 border-white shadow-sm ring-4 ring-secondary-container/20">
+            </div>
+          </button>
+        </div>
+        <!-- Container Point -->
+        <div class="absolute top-[30%] left-[70%] -translate-x-1/2 -translate-y-1/2">
+          <button aria-label="Punto de reciclaje de envases" class="w-11 h-11 flex items-center justify-center">
+            <div
+              class="w-5 h-5 bg-tertiary-container rounded-full border-2 border-white shadow-sm ring-4 ring-tertiary-container/20">
+            </div>
+          </button>
+        </div>
+        <!-- Glass Point 2 -->
+        <div class="absolute top-[65%] left-[40%] -translate-x-1/2 -translate-y-1/2">
+          <button aria-label="Punto de reciclaje de vidrio" class="w-11 h-11 flex items-center justify-center">
+            <div
+              class="w-5 h-5 bg-primary-container rounded-full border-2 border-white shadow-sm ring-4 ring-primary-container/20">
+            </div>
+          </button>
+        </div>
+        <!-- Paper Point 2 -->
+        <div class="absolute top-[80%] left-[25%] -translate-x-1/2 -translate-y-1/2">
+          <button aria-label="Punto de reciclaje de papel" class="w-11 h-11 flex items-center justify-center">
+            <div
+              class="w-5 h-5 bg-secondary-container rounded-full border-2 border-white shadow-sm ring-4 ring-secondary-container/20">
+            </div>
+          </button>
+        </div>
+        <!-- Container Point 2 -->
+        <div class="absolute top-[75%] left-[65%] -translate-x-1/2 -translate-y-1/2">
+          <button aria-label="Punto de reciclaje de envases" class="w-11 h-11 flex items-center justify-center">
+            <div
+              class="w-5 h-5 bg-tertiary-container rounded-full border-2 border-white shadow-sm ring-4 ring-tertiary-container/20">
+            </div>
+          </button>
+        </div>
+        <!-- Map Controls + FAB agrupados (top-right) -->
+        <div class="absolute top-4 right-4 flex flex-col gap-2 z-20">
+          <div class="bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md rounded-lg overflow-hidden flex flex-col">
+            <button aria-label="Ampliar mapa"
+              class="w-11 h-11 flex items-center justify-center text-on-surface dark:text-inverse-on-surface hover:bg-surface-container dark:hover:bg-white/10 transition-colors">
+              <span aria-hidden="true" class="material-symbols-outlined text-[20px]">add</span>
+            </button>
+            <div class="h-px w-full bg-surface-container-high dark:bg-white/10"></div>
+            <button aria-label="Alejar mapa"
+              class="w-11 h-11 flex items-center justify-center text-on-surface dark:text-inverse-on-surface hover:bg-surface-container dark:hover:bg-white/10 transition-colors">
+              <span aria-hidden="true" class="material-symbols-outlined text-[20px]">remove</span>
+            </button>
+          </div>
+          <button aria-label="Ver capas del mapa"
+            class="w-11 h-11 flex items-center justify-center bg-white/90 dark:bg-inverse-surface/90 backdrop-blur-md rounded-lg text-on-surface dark:text-inverse-on-surface hover:bg-white dark:hover:bg-inverse-surface transition-colors">
+            <span aria-hidden="true" class="material-symbols-outlined text-[20px]">layers</span>
+          </button>
+          <button aria-label="Mi ubicación"
+            class="mt-2 w-11 h-11 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-lg">
+            <span aria-hidden="true" class="material-symbols-outlined"
+              style="font-variation-settings: 'FILL' 1;">my_location</span>
+          </button>
+        </div>
+        <!-- Floating Detail Card -->
+        <div
+          class="absolute bottom-[84px] left-3 right-3 md:bottom-8 md:right-8 md:left-auto md:w-[280px] z-30 bg-white/90 dark:bg-inverse-surface/90 dark:text-inverse-on-surface backdrop-blur-xl rounded-2xl p-4 flex flex-col gap-3">
+          <div class="flex items-start justify-between">
+            <h2 class="font-headline font-bold text-base leading-tight text-on-surface">Av. Ana de Viya, 12</h2>
+            <div class="flex items-center gap-1 flex-shrink-0 ml-2">
+              <button aria-label="Guardar en favoritos"
+                class="text-tertiary hover:scale-110 transition-transform btn-favorite w-8 h-8 flex items-center justify-center rounded-full">
+                <span aria-hidden="true" class="material-symbols-outlined text-[18px]">favorite_border</span>
+              </button>
+              <button aria-label="Cerrar tarjeta"
+                class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container/50 transition-colors text-outline">
+                <span aria-hidden="true" class="material-symbols-outlined text-[18px]">close</span>
+              </button>
+            </div>
+          </div>
+          <!-- Chips Row -->
+          <div class="flex flex-wrap gap-1.5">
+            <div
+              class="px-2.5 py-1 bg-primary-container/20 text-on-primary-container rounded-full text-[10px] font-bold uppercase tracking-wider">
+              Vidrio</div>
+            <div
+              class="px-2.5 py-1 bg-surface-container-highest text-on-surface-variant rounded-full text-[10px] font-bold uppercase tracking-wider">
+              L-V 08-20h</div>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span aria-hidden="true" class="material-symbols-outlined text-[16px] text-outline">near_me</span>
+            <span class="font-ui text-[12px] text-outline">A 250 metros de ti</span>
+          </div>
+          <button
+            class="w-full h-[36px] bg-primary text-on-primary hover:opacity-90 active:scale-[0.98] transition-all font-ui font-medium text-[13px] rounded-xl flex items-center justify-center gap-2 mt-1">
+            <span aria-hidden="true" class="material-symbols-outlined text-base">directions</span>
+            Cómo llegar
+          </button>
+        </div>
+      </main>
+    </div>
+    <!-- BottomNavBar (Mobile Only) -->
+    <nav aria-label="Categorías de reciclaje"
+      class="md:hidden fixed bottom-0 left-0 w-full h-[72px] bg-white dark:bg-inverse-surface dark:border-t dark:border-outline-variant/15 flex items-center justify-around px-2 z-50">
+      <button
+        class="flex flex-col items-center gap-1 text-primary dark:text-primary-container min-w-[44px] min-h-[44px] justify-center">
+        <div class="bg-primary-container/20 px-4 py-1 rounded-full">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">recycling</span>
+        </div>
+        <span class="text-[10px] font-bold uppercase tracking-tighter">Vidrio</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 text-outline min-w-[44px] min-h-[44px] justify-center">
+        <span class="material-symbols-outlined">description</span>
+        <span class="text-[10px] font-bold uppercase tracking-tighter">Papel</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 text-outline min-w-[44px] min-h-[44px] justify-center">
+        <span class="material-symbols-outlined">inventory_2</span>
+        <span class="text-[10px] font-bold uppercase tracking-tighter">Envases</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 text-outline min-w-[44px] min-h-[44px] justify-center">
+        <span class="material-symbols-outlined">battery_charging_full</span>
+        <span class="text-[10px] font-bold uppercase tracking-tighter">Pilas</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 text-outline min-w-[44px] min-h-[44px] justify-center">
+        <span class="material-symbols-outlined">checkroom</span>
+        <span class="text-[10px] font-bold uppercase tracking-tighter">Ropa</span>
+      </button>
+    </nav>
   </div>
-  <!-- BottomNavBar (Mobile Only) -->
-  <nav aria-label="Categorías de reciclaje"
-    class="md:hidden fixed bottom-0 left-0 w-full h-[72px] bg-white dark:bg-inverse-surface dark:border-t dark:border-outline-variant/15 flex items-center justify-around px-2 z-50">
-    <button
-      class="flex flex-col items-center gap-1 text-primary dark:text-primary-container min-w-[44px] min-h-[44px] justify-center">
-      <div class="bg-primary-container/20 px-4 py-1 rounded-full">
-        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">recycling</span>
-      </div>
-      <span class="text-[10px] font-bold uppercase tracking-tighter">Vidrio</span>
-    </button>
-    <button class="flex flex-col items-center gap-1 text-outline min-w-[44px] min-h-[44px] justify-center">
-      <span class="material-symbols-outlined">description</span>
-      <span class="text-[10px] font-bold uppercase tracking-tighter">Papel</span>
-    </button>
-    <button class="flex flex-col items-center gap-1 text-outline min-w-[44px] min-h-[44px] justify-center">
-      <span class="material-symbols-outlined">inventory_2</span>
-      <span class="text-[10px] font-bold uppercase tracking-tighter">Envases</span>
-    </button>
-    <button class="flex flex-col items-center gap-1 text-outline min-w-[44px] min-h-[44px] justify-center">
-      <span class="material-symbols-outlined">battery_charging_full</span>
-      <span class="text-[10px] font-bold uppercase tracking-tighter">Pilas</span>
-    </button>
-    <button class="flex flex-col items-center gap-1 text-outline min-w-[44px] min-h-[44px] justify-center">
-      <span class="material-symbols-outlined">checkroom</span>
-      <span class="text-[10px] font-bold uppercase tracking-tighter">Ropa</span>
-    </button>
-  </nav>
+
+  <div class="loading-shell fixed inset-0 pt-[56px] z-40" role="status" aria-live="polite"
+    aria-label="Cargando puntos de reciclaje">
+    <span class="sr-only">Cargando mapa y puntos de reciclaje</span>
+    <div class="flex h-full">
+      <aside
+        class="hidden md:flex flex-col fixed left-0 top-[56px] w-[280px] h-[calc(100vh-56px)] bg-surface-container-lowest p-6 gap-6 ghost-border">
+        <div class="space-y-2">
+          <div class="skeleton-block h-6 w-44 rounded-lg"></div>
+          <div class="skeleton-block h-3 w-24 rounded-full"></div>
+        </div>
+        <div class="skeleton-block h-10 w-full rounded-full"></div>
+        <div class="flex flex-wrap gap-2">
+          <div class="skeleton-block h-8 w-20 rounded-full"></div>
+          <div class="skeleton-block h-8 w-20 rounded-full"></div>
+          <div class="skeleton-block h-8 w-24 rounded-full"></div>
+          <div class="skeleton-block h-8 w-16 rounded-full"></div>
+          <div class="skeleton-block h-8 w-16 rounded-full"></div>
+        </div>
+        <div class="mt-4 flex-1 overflow-hidden">
+          <div class="skeleton-block h-3 w-36 rounded-full mb-4"></div>
+          <div class="space-y-2">
+            <div class="bg-surface-container-low rounded-lg p-3 space-y-2">
+              <div class="skeleton-block h-3 w-3/4 rounded-full"></div>
+              <div class="skeleton-block h-2.5 w-1/3 rounded-full"></div>
+            </div>
+            <div class="bg-surface-container-low rounded-lg p-3 space-y-2">
+              <div class="skeleton-block h-3 w-2/3 rounded-full"></div>
+              <div class="skeleton-block h-2.5 w-1/3 rounded-full"></div>
+            </div>
+            <div class="bg-surface-container-low rounded-lg p-3 space-y-2">
+              <div class="skeleton-block h-3 w-4/5 rounded-full"></div>
+              <div class="skeleton-block h-2.5 w-1/3 rounded-full"></div>
+            </div>
+            <div class="bg-surface-container-low rounded-lg p-3 space-y-2">
+              <div class="skeleton-block h-3 w-2/3 rounded-full"></div>
+              <div class="skeleton-block h-2.5 w-1/3 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+        <div class="skeleton-block h-11 w-full rounded-full"></div>
+      </aside>
+
+      <main class="ml-0 md:ml-[280px] flex-1 relative bg-surface-container-low overflow-hidden">
+        <div
+          class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(0,109,62,0.08)_0%,transparent_40%),radial-gradient(circle_at_80%_70%,rgba(0,95,173,0.08)_0%,transparent_45%),linear-gradient(160deg,#f3f4f5_0%,#f8f9fa_55%,#edf2ef_100%)]">
+        </div>
+
+        <div class="md:hidden absolute top-4 left-4 right-16 z-20">
+          <div class="bg-white/85 backdrop-blur-xl rounded-full px-4 py-2.5">
+            <div class="skeleton-block h-5 w-full rounded-full"></div>
+          </div>
+        </div>
+
+        <div class="absolute top-[20%] left-[30%] -translate-x-1/2 -translate-y-1/2">
+          <div class="skeleton-block w-6 h-6 rounded-full"></div>
+        </div>
+        <div class="absolute top-[45%] left-[55%] -translate-x-1/2 -translate-y-1/2">
+          <div class="skeleton-block w-5 h-5 rounded-full"></div>
+        </div>
+        <div class="absolute top-[30%] left-[70%] -translate-x-1/2 -translate-y-1/2">
+          <div class="skeleton-block w-5 h-5 rounded-full"></div>
+        </div>
+        <div class="absolute top-[65%] left-[40%] -translate-x-1/2 -translate-y-1/2">
+          <div class="skeleton-block w-5 h-5 rounded-full"></div>
+        </div>
+        <div class="absolute top-[80%] left-[25%] -translate-x-1/2 -translate-y-1/2">
+          <div class="skeleton-block w-5 h-5 rounded-full"></div>
+        </div>
+        <div class="absolute top-[75%] left-[65%] -translate-x-1/2 -translate-y-1/2">
+          <div class="skeleton-block w-5 h-5 rounded-full"></div>
+        </div>
+
+        <div class="absolute top-4 right-4 flex flex-col gap-2 z-20">
+          <div class="bg-white/85 backdrop-blur-xl rounded-lg p-2 flex flex-col gap-2">
+            <div class="skeleton-block w-7 h-7 rounded-md"></div>
+            <div class="skeleton-block w-7 h-7 rounded-md"></div>
+          </div>
+          <div class="bg-white/85 backdrop-blur-xl rounded-lg p-2">
+            <div class="skeleton-block w-7 h-7 rounded-md"></div>
+          </div>
+          <div class="bg-white/85 backdrop-blur-xl rounded-full p-2 mt-2">
+            <div class="skeleton-block w-7 h-7 rounded-full"></div>
+          </div>
+        </div>
+
+        <div
+          class="absolute bottom-[84px] left-3 right-3 md:bottom-8 md:right-8 md:left-auto md:w-[280px] z-30 bg-white/85 backdrop-blur-xl rounded-2xl p-4 space-y-3">
+          <div class="flex items-start justify-between gap-3">
+            <div class="space-y-2 w-full">
+              <div class="skeleton-block h-4 w-4/5 rounded-full"></div>
+              <div class="skeleton-block h-3 w-2/5 rounded-full"></div>
+            </div>
+            <div class="skeleton-block h-8 w-8 rounded-full flex-shrink-0"></div>
+          </div>
+          <div class="flex gap-2">
+            <div class="skeleton-block h-5 w-16 rounded-full"></div>
+            <div class="skeleton-block h-5 w-20 rounded-full"></div>
+          </div>
+          <div class="skeleton-block h-3 w-1/2 rounded-full"></div>
+          <div class="skeleton-block h-9 w-full rounded-xl"></div>
+        </div>
+      </main>
+    </div>
+
+    <nav aria-hidden="true"
+      class="md:hidden fixed bottom-0 left-0 w-full h-[72px] bg-white dark:bg-inverse-surface flex items-center justify-around px-2 z-50">
+      <div class="skeleton-block w-12 h-9 rounded-full"></div>
+      <div class="skeleton-block w-8 h-8 rounded-lg"></div>
+      <div class="skeleton-block w-8 h-8 rounded-lg"></div>
+      <div class="skeleton-block w-8 h-8 rounded-lg"></div>
+      <div class="skeleton-block w-8 h-8 rounded-lg"></div>
+    </nav>
+  </div>
 </body>
 
 </html>
