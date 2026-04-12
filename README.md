@@ -11,9 +11,33 @@ ReciclaCAD helps citizens of Cádiz find the nearest recycling point. This repos
 
 ## Preview
 
-### Desktop
+### Light mode
+
+#### Desktop
 
 ![ReciclaCAD - Desktop](assets/imgs/ui-desktop.png)
+
+#### Mobile
+
+<img src="assets/imgs/ui-mobile.png" alt="ReciclaCAD - Mobile" width="300" />
+
+#### Tablet
+
+<img src="assets/imgs/ui-tablet.png" alt="ReciclaCAD - Tablet" width="500" />
+
+### Dark mode
+
+#### Desktop
+
+![ReciclaCAD - Desktop Dark](assets/imgs/ui-desktop-dark.png)
+
+#### Mobile
+
+<img src="assets/imgs/ui-mobile-dark.png" alt="ReciclaCAD - Mobile Dark" width="300" />
+
+#### Tablet
+
+<img src="assets/imgs/ui-tablet-dark.png" alt="ReciclaCAD - Tablet Dark" width="500" />
 
 ## Screens
 
