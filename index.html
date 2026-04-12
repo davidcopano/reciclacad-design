@@ -183,6 +183,67 @@
         content: none;
       }
     }
+
+    /* Floating detail card: type chips color mapping (light + dark) */
+    [data-point-detail-type] {
+      padding: 0.3125rem 0.625rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    /* Vidrio (primary) */
+    [data-point-detail-type][data-type="vidrio"] {
+      background-color: rgba(46, 204, 125, 0.20);
+      color: #00512c;
+    }
+    .dark [data-point-detail-type][data-type="vidrio"] {
+      background-color: rgba(46, 204, 125, 0.10);
+      color: #2ecc7d;
+    }
+
+    /* Papel (secondary) */
+    [data-point-detail-type][data-type="papel"] {
+      background-color: rgba(73, 157, 254, 0.15);
+      color: #003462;
+    }
+    .dark [data-point-detail-type][data-type="papel"] {
+      background-color: rgba(73, 157, 254, 0.10);
+      color: #499dfe;
+    }
+
+    /* Envases (tertiary) */
+    [data-point-detail-type][data-type="envases"] {
+      background-color: rgba(242, 163, 32, 0.15);
+      color: #613e00;
+    }
+    .dark [data-point-detail-type][data-type="envases"] {
+      background-color: rgba(242, 163, 32, 0.10);
+      color: #f2a320;
+    }
+
+    /* Pilas (quaternary) */
+    [data-point-detail-type][data-type="pilas"] {
+      background-color: rgba(151, 240, 255, 0.15);
+      color: #001F26;
+    }
+    .dark [data-point-detail-type][data-type="pilas"] {
+      background-color: rgba(151, 240, 255, 0.10);
+      color: #006877;
+    }
+
+    /* Ropa (quinary) */
+    [data-point-detail-type][data-type="ropa"] {
+      background-color: rgba(238, 220, 255, 0.15);
+      color: #261141;
+    }
+    .dark [data-point-detail-type][data-type="ropa"] {
+      background-color: rgba(238, 220, 255, 0.10);
+      color: #6B538C;
+    }
   </style>
 </head>
 
@@ -488,8 +549,7 @@
           <div class="flex flex-wrap gap-1.5">
             <div
               class="px-2.5 py-1 bg-primary-container/20 text-on-primary-container rounded-full text-[10px] font-bold uppercase tracking-wider"
-              data-point-detail-type>
-              Vidrio</div>
+              data-point-detail-type data-type="vidrio">Vidrio</div>
             <div
               class="px-2.5 py-1 bg-surface-container-highest text-on-surface-variant rounded-full text-[10px] font-bold uppercase tracking-wider">
               L-V 08-20h</div>

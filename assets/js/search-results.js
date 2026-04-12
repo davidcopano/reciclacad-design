@@ -95,8 +95,15 @@
 
     if (detailTypeNode) {
       detailTypeNode.textContent = point.typeLabel;
-      detailTypeNode.className =
-        'px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ' + point.detailTypeToneClass;
+      // keep base classes — color/tone handled by CSS via data-type attribute
+      detailTypeNode.className = 'px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider';
+      // normalize type label to a simple key (e.g., 'Vidrio' -> 'vidrio')
+      var typeKey = String(point.typeLabel || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '');
+      detailTypeNode.setAttribute('data-type', typeKey);
     }
   }
 
