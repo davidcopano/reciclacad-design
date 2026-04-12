@@ -14,8 +14,13 @@
 }
 
 .dark .search-results-panel {
-  background: rgba(46, 49, 50, 0.9);
+  /* Más elevada en modo oscuro: fondo ligeramente más claro, mayor blur y sombra sutil */
+  background: linear-gradient(180deg, rgba(46,49,50,0.94), rgba(46,49,50,0.86));
   color: #f0f1f2;
+  backdrop-filter: blur(22px) saturate(120%);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 14px 36px rgba(3, 7, 18, 0.55), 0 4px 12px rgba(3, 7, 18, 0.28);
 }
 
 .search-results-panel[data-visible="true"] {
