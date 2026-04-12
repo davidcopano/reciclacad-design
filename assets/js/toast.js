@@ -100,6 +100,12 @@
 
     if (icon) {
       icon.textContent = isFavorite ? 'favorite_border' : 'favorite';
+      // Force the Material Symbols font to render the filled variant when active
+      try {
+        icon.style.fontVariationSettings = isFavorite ? "'FILL' 0, 'wght' 400" : "'FILL' 1, 'wght' 500";
+      } catch (e) {
+        // ignore in older browsers that don't support fontVariationSettings
+      }
     }
 
     showToast(
