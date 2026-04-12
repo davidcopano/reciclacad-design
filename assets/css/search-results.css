@@ -102,9 +102,9 @@
   width: 1.9rem;
   height: 1.9rem;
   transform: scale(1.06);
+  border-radius: 50%;
   border-width: 4px;
   border-color: #ffffff;
-  background: linear-gradient(180deg, #4ce290 0%, #00703a 100%);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18), 0 0 0 8px rgba(46, 204, 125, 0.12);
   transition: transform 0.18s ease, box-shadow 0.18s ease, width 0.18s ease, height 0.18s ease;
   animation: marker-subtle-pulse 2.2s ease-out infinite;
