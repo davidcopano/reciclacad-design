@@ -134,8 +134,17 @@
 
     markerButtons.forEach(function (button) {
       var isSelected = button.dataset.pointId === pointId;
+      var markerPoint = getPointById(button.dataset.pointId);
       button.dataset.selected = isSelected ? 'true' : 'false';
       button.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+
+      if (markerPoint) {
+        // Keep aria-label for screen reader clarity; don't render visible text above marker.
+        button.setAttribute(
+          'aria-label',
+          'Punto de reciclaje en ' + markerPoint.address + (isSelected ? ' (seleccionado)' : '')
+        );
+      }
     });
 
     updateDetailCard(point);
