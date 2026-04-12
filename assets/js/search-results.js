@@ -338,7 +338,7 @@
         '  <div class="flex items-center gap-3 min-w-0">' +
         '    <div class="w-2.5 h-2.5 rounded-full flex-shrink-0 ' + item.typeClass + '"></div>' +
         '    <div class="min-w-0">' +
-        '      <div class="text-[13px] font-medium text-on-surface truncate">' + item.address + '</div>' +
+        '      <div class="text-[13px] font-medium text-on-surface truncate dark:text-inverse-on-surface">' + item.address + '</div>' +
         '      <div class="text-[11px] text-outline">A ' + item.distance + 'm de ti</div>' +
         '    </div>' +
         '  </div>' +
