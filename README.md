@@ -70,6 +70,9 @@ ReciclaCAD helps citizens of Cádiz find the nearest recycling point. This repos
 | [Material Symbols Outlined](https://fonts.google.com/icons) | Icon set |
 | [Google Stitch](https://stitch.withgoogle.com) | AI-assisted initial design generation |
 | [Impeccable](https://github.com/pbakaus/impeccable/) | AI agent skills for design refinement |
+| [Visual Studio Code](https://code.visualstudio.com/) | Code editor for iterative design adjustments |
+| [GitHub Copilot](https://copilot.github.com/) | AI code suggestions during design refinement |
+| [Claude Sonnet 4.6](https://www.anthropic.com/) & [GPT 5.3 Codex](https://openai.com/) | AI models used in VS Code + GitHub Copilot for design iteration and consistency checks |
 
 ## Getting started
 
